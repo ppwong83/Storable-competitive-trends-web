@@ -1,11 +1,4 @@
 <!DOCTYPE html>
-<script type="application/json" id="cowork-artifact-meta">
-{
-  "name": "Storable Competitive Intent",
-  "schemaVersion": 1,
-  "description": "Daily Google Trends watch of search intent for competitors to Storable's SiteLink, Storable Edge, and Storable Easy product lines, with an auto-expanding competitor watchlist."
-}
-</script>
 <html>
 <head>
 <meta charset="utf-8">
@@ -21,19 +14,27 @@
   }
   h1 { font-size: 20px; margin: 0 0 4px; }
   h2 { font-size: 16px; margin: 0 0 2px; }
-  h3 { font-size: 13px; margin: 18px 0 8px; color: #444; text-transform: uppercase; letter-spacing: 0.03em; }
-  .sub { color: #666; font-size: 13px; margin: 0 0 20px; }
+  h3 { font-size: 12.5px; margin: 16px 0 8px; color: #555; text-transform: uppercase; letter-spacing: 0.04em; }
+  .sub { color: #666; font-size: 13px; margin: 0 0 4px; }
+  .meta-row { display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; gap: 8px; margin-bottom: 16px; }
+  .stats { color: #888; font-size: 12px; }
   .banner {
     background: #eef3ff; border: 1px solid #c9d9ff; border-radius: 8px;
     padding: 12px 16px; margin-bottom: 20px; font-size: 13.5px; color: #1f3a70;
   }
   .banner.warn { background: #fff7e6; border-color: #ffe0a3; color: #6b4c00; }
-  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(360px, 1fr)); gap: 16px; margin-bottom: 20px; }
-  .card {
-    background: #fff; border: 1px solid #e4e4e7; border-radius: 10px;
-    padding: 16px 18px;
+  .tabbar { display: flex; gap: 4px; border-bottom: 2px solid #e4e4e7; margin-bottom: 18px; flex-wrap: wrap; }
+  .tabbtn {
+    appearance: none; border: none; background: none; cursor: pointer;
+    font-family: inherit; font-size: 13.5px; font-weight: 600; color: #777;
+    padding: 9px 16px; border-bottom: 2px solid transparent; margin-bottom: -2px;
   }
-  .card .desc { color: #666; font-size: 12.5px; margin-bottom: 10px; }
+  .tabbtn.active { color: #1f3a70; border-bottom-color: #3d5aeb; }
+  .tabbtn:hover { color: #1f3a70; }
+  .panel { display: none; }
+  .panel.active { display: block; }
+  .linehead { background: #fff; border: 1px solid #e4e4e7; border-radius: 10px; padding: 14px 18px; margin-bottom: 14px; }
+  .linehead .desc { color: #666; font-size: 12.5px; margin: 2px 0 10px; }
   .chips { margin-bottom: 4px; }
   .chip {
     display: inline-block; padding: 2px 9px; border-radius: 10px; font-size: 11px; font-weight: 600;
@@ -43,6 +44,10 @@
   .chip.pending { background: #eee; color: #777; }
   .chip.topic { background: #f0eefb; color: #5b3fae; font-weight: 500; }
   .chip.flagged { background: #fdeaea; color: #a33; }
+  .chip.new { background: #ffe9c7; color: #8a5300; }
+  .section-block { background: #fff; border: 1px solid #e4e4e7; border-radius: 10px; padding: 4px 18px 12px; margin-bottom: 14px; }
+  .section-block.today { border-color: #ffd591; }
+  .empty-note { color: #999; font-size: 12.5px; font-style: italic; padding: 6px 0 10px; }
   .feed-item { padding: 10px 0; border-top: 1px solid #f0f0f0; }
   .feed-item:first-child { border-top: none; }
   .feed-item a { color: #1a1a1a; font-weight: 600; font-size: 13px; text-decoration: none; }
@@ -50,7 +55,13 @@
   .feed-meta { font-size: 11px; color: #999; margin: 2px 0 4px; }
   .feed-summary { font-size: 12.5px; color: #444; line-height: 1.45; }
   .feed-tag { display: inline-block; background: #f2f2f4; color: #666; border-radius: 5px; padding: 1px 6px; font-size: 10px; margin-right: 5px; text-transform: uppercase; letter-spacing: 0.02em; }
-  .method { background: #fff; border: 1px solid #e4e4e7; border-radius: 10px; padding: 16px 18px; font-size: 13px; line-height: 1.55; color: #333; }
+  .feed-tag.source { background: #eaf1ff; color: #1f4fa0; }
+  details.archive-details { margin-top: 2px; }
+  details.archive-details > summary { cursor: pointer; font-size: 12.5px; font-weight: 600; color: #666; padding: 8px 0; list-style: none; }
+  details.archive-details > summary::-webkit-details-marker { display: none; }
+  details.archive-details > summary:before { content: "▸ "; }
+  details.archive-details[open] > summary:before { content: "▾ "; }
+  .method { background: #fff; border: 1px solid #e4e4e7; border-radius: 10px; padding: 16px 18px; font-size: 13px; line-height: 1.55; color: #333; margin-top: 8px; }
   .method ol, .method ul { margin: 6px 0 12px 18px; padding: 0; }
   .method li { margin-bottom: 4px; }
   footer { margin-top: 20px; font-size: 11.5px; color: #999; }
@@ -58,26 +69,30 @@
 </style>
 </head>
 <body>
-
 <h1>Storable Competitive Intelligence Watch</h1>
-<p class="sub">Industry news, announcements, reviews &amp; forum chatter, split by product line &middot; last check: <b id="lastChecked">-</b> &middot; next scheduled check: weekdays, ~9am ET</p>
+<div class="meta-row">
+  <p class="sub">Industry news, announcements, reviews &amp; forum chatter, split by product line &middot; last check: <b id="lastChecked">-</b> &middot; next scheduled check: weekdays, ~9am ET</p>
+  <div class="stats" id="statsSummary"></div>
+</div>
 
 <div class="banner" id="statusBanner">Loading latest read...</div>
 
-<div class="grid" id="lineCards"></div>
+<div class="tabbar" id="tabbar"></div>
+<div id="tabPanels"></div>
 
 <div class="method">
   <h2>How this loop works</h2>
   <p><b>Purpose:</b> surface real competitive movement — funding, launches, partnerships, acquisitions, notable review/sentiment shifts, and forum chatter about switching software — for competitors to SiteLink, Storable Edge, and Storable Easy, before it becomes competitive pressure.</p>
   <ol>
-    <li><b>Sources:</b> industry trade press (Inside Self Storage, Mini Storage Messenger, StorageNewsletter, SSA), general web/PR (funding, launch, M&amp;A, partnership announcements), review sites (G2, Capterra, GetApp — new reviews, rating shifts, feature mentions), and community chatter (Self-Storage Talk forum, and social platforms where reachable).</li>
-    <li><b>Check cadence:</b> weekdays. Each run rotates through a subset of tracked competitors per source type so the full watchlist gets covered over the week rather than everything at once.</li>
+    <li><b>Sources:</b> industry trade press (Inside Self Storage, Mini Storage Messenger, StorageNewsletter, SSA), general web/PR (funding, launch, M&amp;A, partnership announcements), review sites (G2, Capterra, GetApp — new reviews, rating shifts, feature mentions), and community chatter (Self-Storage Talk forum, and social platforms where reachable). Each item shows its source domain directly.</li>
+    <li><b>Check cadence:</b> weekdays. Each run rotates through a subset of tracked competitors so the full watchlist gets covered over the week rather than everything at once.</li>
+    <li><b>Layout:</b> each product line tab shows what's new today at the top, a rolling 30-day "previous" view below that, and an archive of anything older than 30 days, collapsed by default.</li>
     <li><b>Acts when:</b> a genuinely new item shows up — not the same forum thread or review page resurfacing. Items are deduped against a seen-URL list per product line.</li>
     <li><b>Flagging:</b> an item is marked <span class="chip flagged">flagged</span> when it's a funding round, acquisition, major product launch/relaunch, or a forum/review pattern suggesting real churn risk (e.g. a forced migration frustrating users) — not routine listicle or comparison-page noise.</li>
-    <li><b>Expansion:</b> new competitor names surfaced in any source (a funding story, a forum recommendation, a new G2 category listing) get added to the relevant line's watchlist as <span class="chip pending">pending</span> automatically — the list keeps growing, it isn't fixed to what we started with.</li>
-    <li><b>State:</b> stored in <code>storable_competitive_intent_state.json</code> in your outputs folder — watchlist, topics, seen-URL dedupe list, and the recent-items feed per line.</li>
+    <li><b>Expansion:</b> new competitor names surfaced in any source get added to the relevant line's watchlist as <span class="chip pending">pending</span> automatically — the list keeps growing, it isn't fixed to what we started with.</li>
+    <li><b>State:</b> stored in <code>state.json</code> in a persistent working folder — watchlist, topics, seen-URL dedupe list, and the recent-items feed per line.</li>
     <li><b>Stop / bail-out:</b> if searches fail 3 checks in a row, this page shows a red banner asking for a manual look instead of failing silently.</li>
-    <li><b>Output:</b> this page, refreshed in place each weekday morning.</li>
+    <li><b>Output:</b> this page, refreshed in place each weekday morning, plus a dated snapshot saved to an archive folder for historical review.</li>
   </ol>
 </div>
 
@@ -85,7 +100,8 @@
 
 <script>
 const DATA = {
-  lastChecked: "Sep 22, 2026",
+  lastChecked: "2026-09-22",
+  lastCheckedLabel: "Sep 22, 2026",
   lines: [
     {
       id: "sitelink",
@@ -105,35 +121,35 @@ const DATA = {
       ],
       items: [
         {
-          date: "Mar 2025 (surfaced Sep 22, 2026)", type: "product launch", flagged: true,
+          added: "2026-09-22", date: "Mar 2025 (surfaced Sep 22, 2026)", type: "product launch", flagged: true,
           title: "Five self-storage software brands unite as one: SC Navigator",
           url: "https://www.modernstoragemedia.com/news/five-self-storage-software-brands-unite-as-one-sc-navigator",
           competitor: "Storage Commander / Syrasoft",
           summary: "Storage Commander, Syrasoft, DoorSwap, Space Control, and Domico merged into a single cloud SaaS platform, SC Navigator, aimed at operators from independent owners to national portfolios — directly overlapping SiteLink's multi-site/enterprise positioning. Both legacy pending entries are kept on the watchlist since existing customers are still being migrated; SC Navigator added as its own tracked entry."
         },
         {
-          date: "2026", type: "press release", flagged: true,
+          added: "2026-09-18", date: "2026", type: "press release", flagged: true,
           title: "Yardi launches Yardi Storage Manager for institutional self-storage operators",
           url: "https://www.yardi.com/news/press-releases/yardi-launches-yardi-storage-manager-for-institutional-self-storage-operators/",
           competitor: "Yardi",
           summary: "New Yardi product distinct from Yardi Breeze, aimed squarely at the institutional/multi-site tier SiteLink competes in. Added to watchlist as its own tracked entry."
         },
         {
-          date: "2026", type: "press", flagged: false,
+          added: "2026-09-18", date: "2026", type: "press", flagged: false,
           title: "Yardi goes all-in on self storage at SSA Fall 2026",
           url: "https://www.yardi.com/news/press-releases/yardi-self-storage-ssa-fall-2026/",
           competitor: "Yardi",
           summary: "Conference-presence push reinforcing Yardi's self-storage investment; context for the Storage Manager launch above."
         },
         {
-          date: "2026", type: "forum", flagged: true,
+          added: "2026-09-18", date: "2026", type: "forum", flagged: true,
           title: "QuikStor Express users forced to migrate to QMS cloud platform",
           url: "https://www.selfstoragetalk.com/forum/general-self-storage-forums/technology-software-and-security/226030-quikstor-forced-migration-im-seeking-next-steps-feedback",
           competitor: "QuikStor",
           summary: "Older QuikStor Express installs are losing online payment/reservation capability, pushing operators toward a forced cloud upgrade — visible churn risk, and threads in the same forum name SiteLink itself as one of the alternatives operators are considering."
         },
         {
-          date: "2026", type: "forum", flagged: false,
+          added: "2026-09-18", date: "2026", type: "forum", flagged: false,
           title: "\"Time to change software — looking for recommendations\" and related switching threads",
           url: "https://www.selfstoragetalk.com/forum/general-self-storage-forums/technology-software-and-security/224635-time-to-change-software-looking-for-recommendations-please",
           competitor: "multiple",
@@ -159,49 +175,49 @@ const DATA = {
       ],
       items: [
         {
-          date: "Sep 2026", type: "product launch", flagged: true,
+          added: "2026-09-22", date: "Sep 2026", type: "product launch", flagged: true,
           title: "QuikStor arrives at SSA Fall 2026 with its most powerful platform yet",
           url: "https://www.prweb.com/releases/quikstor-arrives-at-ssa-with-its-most-powerful-platform-yet-built-by-operators-for-operators-302871007.html",
           competitor: "QuikStor",
           summary: "QuikStor's biggest release to date: AI-driven revenue management, conversational data reporting, AI voice automation, and full-funnel website transparency, unveiled at SSA Fall 2026. Directly raises the bar on the AI-automation ground Edge competes on."
         },
         {
-          date: "Sep 17, 2026", type: "partnership", flagged: false,
+          added: "2026-09-21", date: "Sep 17, 2026", type: "partnership", flagged: false,
           title: "QuikStor integrates with Storagely to auto-convert website traffic into rentals",
           url: "https://www.prweb.com/releases/quikstor-and-storagely-integrate-to-turn-website-traffic-into-rentals-automatically-302881721.html",
           competitor: "QuikStor",
           summary: "Real-time inventory/pricing sync between QuikStor and Storagely-powered websites; first live integrations targeted for Q4 2026. Ecosystem-building move for a competitor tracked in both Edge and Easy segments — not itself a new product launch."
         },
         {
-          date: "Sep 1, 2026", type: "announcement", flagged: false,
+          added: "2026-09-21", date: "Sep 1, 2026", type: "announcement", flagged: false,
           title: "6Storage expands vision for the future of self-storage operations",
           url: "https://www.6storage.com/6storage-expands-vision-for-the-future-of-self-storage-operations/",
           competitor: "6Storage",
           summary: "Follow-up to March's all-in-one platform launch — broader operations roadmap, plus conference presence at both SSA Fall (Las Vegas) and FEDESSA (Germany, Sept 22–24). Continued momentum, not a new flag on its own."
         },
         {
-          date: "Mar 2026", type: "product launch", flagged: true,
+          added: "2026-09-18", date: "Mar 2026", type: "product launch", flagged: true,
           title: "6Storage launches all-in-one growth platform, unifying AI sales engagement, SEO/website, and facility management",
           url: "https://www.prnewswire.com/news-releases/6storage-introduces-a-more-powerful-allinone-growth-platform-for-modern-selfstorage-operations-302703971.html",
           competitor: "6Storage",
           summary: "Direct move into Storable Edge's bundled marketing + management positioning — this is the segment's biggest platform move this year."
         },
         {
-          date: "Sep 2026", type: "product launch", flagged: true,
+          added: "2026-09-18", date: "Sep 2026", type: "product launch", flagged: true,
           title: "StoreEase launches AI Service Tool \"Virtual Console Flex\" for traditionally staffed facilities",
           url: "https://www.insideselfstorage.com/self-storage-security-technology/iss-news-desk-self-storage-vendors-introduce-a-slew-of-ai-products-to-support-facility-operations-in-2026",
           competitor: "StoreEase",
           summary: "New entrant offering AI-staffed virtual console as an alternative to on-site staff — added to watchlist as tracked. (Related coverage elsewhere names this platform \"EaseOS,\" launched Mar 2026, bundling the same Web Assistant, Virtual Console, and Voice AI Agent pieces — treated as one story, not double-counted.)"
         },
         {
-          date: "2026", type: "review signal", flagged: false,
+          added: "2026-09-18", date: "2026", type: "review signal", flagged: false,
           title: "6Storage building a refreshed admin portal template (expected mid-2026)",
           url: "https://www.g2.com/products/6storage/reviews",
           competitor: "6Storage",
           summary: "G2 reviewer commentary pointing to an admin UI refresh in progress — worth checking again once shipped."
         },
         {
-          date: "2026", type: "review signal", flagged: false,
+          added: "2026-09-18", date: "2026", type: "review signal", flagged: false,
           title: "Storeganise positioned as the 2026 automation/self-service benchmark in buyer evaluations",
           url: "https://www.g2.com/products/storeganise-self-storage/reviews",
           competitor: "Storeganise",
@@ -215,7 +231,7 @@ const DATA = {
       desc: "Formerly Easy Storage Solutions — single-facility / small operator software.",
       topics: ["well-funded modern new entrant (Cubby)", "forced-migration churn risk", "no-cost / low-cost pricing pressure", "rental-site ecosystem integrations"],
       watchlist: [
-        {name:"Cubby", status:"tracked", note:"confirmed real competitor — not just a generic-word Trends collision"},
+        {name:"Cubby", status:"tracked", note:"confirmed real competitor — not just a generic-word collision"},
         {name:"QuikStor", status:"tracked", note:"biggest platform release yet, unveiled SSA Fall 2026 (Sep 2026)"},
         {name:"Self Storage Manager", status:"tracked"},
         {name:"Storman", status:"tracked"},
@@ -229,63 +245,63 @@ const DATA = {
       ],
       items: [
         {
-          date: "Sep 2026", type: "product launch", flagged: true,
+          added: "2026-09-22", date: "Sep 2026", type: "product launch", flagged: true,
           title: "QuikStor arrives at SSA Fall 2026 with its most powerful platform yet",
           url: "https://www.prweb.com/releases/quikstor-arrives-at-ssa-with-its-most-powerful-platform-yet-built-by-operators-for-operators-302871007.html",
           competitor: "QuikStor",
           summary: "Same SSA Fall 2026 release noted under Edge — relevant here too since QuikStor's single-facility installs are core to the Easy segment. AI revenue management, AI voice automation, and conversational reporting raise the bar on what small operators will expect from Storable Easy."
         },
         {
-          date: "Sep 2026", type: "partnership", flagged: false,
+          added: "2026-09-22", date: "Sep 2026", type: "partnership", flagged: false,
           title: "Cubby keeps building its ecosystem: swivl AI partnership, Fall Release, and \"Most Innovative Product\" recognition",
           url: "https://www.cubbystorage.com/blog/cubby-and-swivl-partnership",
           competitor: "Cubby",
           summary: "Cubby announced a Fall Release (Sep 1) plus a new AI-communications integration with swivl, and was separately named Inside Self-Storage's \"Most Innovative Product\" of 2026. None of these individually rises to the level of the Series A, but together they show Cubby continuing to compound momentum in the segment Storable Easy serves."
         },
         {
-          date: "Sep 2026", type: "partnership", flagged: false,
+          added: "2026-09-21", date: "Sep 2026", type: "partnership", flagged: false,
           title: "Storagely launches native integration with Cubby",
           url: "https://www.modernstoragemedia.com/news/storagely-integrates-with-cubby-self-storage-platform",
           competitor: "Cubby",
           summary: "Cubby-connected operators can sync inventory/pricing to a Storagely-powered rental site with rentals flowing back into Cubby automatically; waitlist open now, first launches Q4 2026. Shows Cubby continuing to build out its ecosystem post-Series A."
         },
         {
-          date: "Sep 17, 2026", type: "partnership", flagged: false,
+          added: "2026-09-21", date: "Sep 17, 2026", type: "partnership", flagged: false,
           title: "QuikStor integrates with Storagely to auto-convert website traffic into rentals",
           url: "https://www.prweb.com/releases/quikstor-and-storagely-integrate-to-turn-website-traffic-into-rentals-automatically-302881721.html",
           competitor: "QuikStor",
           summary: "Same Storagely integration noted under Edge — relevant here too since QuikStor's single-facility installs are core to the Easy segment."
         },
         {
-          date: "Jan 2026", type: "funding", flagged: true,
+          added: "2026-09-18", date: "Jan 2026", type: "funding", flagged: true,
           title: "Cubby raises $63M Series A led by Goldman Sachs Alternatives",
           url: "https://www.cubbystorage.com/blog/cubby-announces-63-million-series-a",
           competitor: "Cubby",
           summary: "Major signal: Cubby is a well-capitalized, modern-UI, AI-forward entrant explicitly targeting the small-operator tier Storable Easy serves. This remains the single biggest item across all three product lines."
         },
         {
-          date: "2026", type: "partnership", flagged: false,
+          added: "2026-09-18", date: "2026", type: "partnership", flagged: false,
           title: "QuikStor integrates with Patchwork Labs AI communication/workflow platform",
           url: "https://www.insideselfstorage.com/self-storage-security-technology/iss-news-desk-self-storage-vendors-introduce-a-slew-of-ai-products-to-support-facility-operations-in-2026",
           competitor: "QuikStor",
           summary: "AI communications bolt-on for QuikStor, aimed at smaller operators."
         },
         {
-          date: "2026", type: "forum", flagged: true,
+          added: "2026-09-18", date: "2026", type: "forum", flagged: true,
           title: "QuikStor Express users forced to migrate to QMS cloud platform",
           url: "https://www.selfstoragetalk.com/forum/general-self-storage-forums/technology-software-and-security/226030-quikstor-forced-migration-im-seeking-next-steps-feedback",
           competitor: "QuikStor",
           summary: "Same forced-migration thread as under SiteLink — relevant here too since many affected operators are single-facility QuikStor Express users, Storable Easy's core segment."
         },
         {
-          date: "2026", type: "review signal", flagged: false,
+          added: "2026-09-18", date: "2026", type: "review signal", flagged: false,
           title: "CCStorage positions as no-cost signup software for small operators",
           url: "https://www.capterra.com/self-storage-software/",
           competitor: "CCStorage",
           summary: "Free-entry pricing model aimed at the same small/single-facility budget-sensitive segment."
         },
         {
-          date: "2026", type: "review signal", flagged: false,
+          added: "2026-09-18", date: "2026", type: "review signal", flagged: false,
           title: "WebSelfStorage and Storman review sentiment check",
           url: "https://www.selecthub.com/self-storage-software/webselfstorage-vs-storman/",
           competitor: "WebSelfStorage / Storman",
@@ -295,41 +311,121 @@ const DATA = {
     }
   ]
 };
-
-document.getElementById("lastChecked").textContent = DATA.lastChecked;
+document.getElementById("lastChecked").textContent = DATA.lastCheckedLabel;
 
 const banner = document.getElementById("statusBanner");
 banner.innerHTML = "<b>Two items newly flagged today (Sep 22), both platform moves rather than funding or churn signals.</b> Under SiteLink: five legacy brands (Storage Commander, Syrasoft, DoorSwap, Space Control, Domico) have consolidated into a single new platform, <b>SC Navigator</b> — added as its own tracked entry. Under Storable Edge and Storable Easy: <b>QuikStor</b> unveiled its biggest platform release yet at SSA Fall 2026 (AI revenue management, AI voice automation, conversational reporting) — a real bar-raise on the AI-automation ground Storable competes on there. Standing top signals are unchanged otherwise: Cubby's $63M Series A (Storable Easy) and Yardi's institutional-tier \"Yardi Storage Manager\" (SiteLink) remain the two biggest developments this quarter. Two new pending competitors were added to the Storable Easy watchlist — OpenUnit (YC-backed, Toronto) and Selfstorage.team (Germany-based) — both surfaced via category listings rather than direct news, so US relevance is unconfirmed.";
 
-const cardsEl = document.getElementById("lineCards");
-DATA.lines.forEach(line => {
+// ---- helpers ----
+function sourceNameFromUrl(url) {
+  try {
+    const host = new URL(url).hostname.replace(/^www\./, "");
+    const map = {
+      "yardi.com": "Yardi (company site)",
+      "yardibreeze.com": "Yardi Breeze (company site)",
+      "modernstoragemedia.com": "Modern Storage Media",
+      "selfstoragetalk.com": "Self-Storage Talk Forum",
+      "prweb.com": "PRWeb",
+      "prnewswire.com": "PR Newswire",
+      "insideselfstorage.com": "Inside Self Storage",
+      "g2.com": "G2",
+      "capterra.com": "Capterra",
+      "selecthub.com": "SelectHub",
+      "cubbystorage.com": "Cubby (company site)",
+      "6storage.com": "6Storage (company site)"
+    };
+    return map[host] || host;
+  } catch (e) {
+    return "source";
+  }
+}
+function daysBetween(fromIso, toIso) {
+  const a = new Date(fromIso + "T00:00:00Z");
+  const b = new Date(toIso + "T00:00:00Z");
+  return Math.round((b - a) / 86400000);
+}
+function bucketFor(addedIso) {
+  const age = daysBetween(addedIso, DATA.lastChecked);
+  if (age <= 0) return "today";
+  if (age <= 30) return "previous";
+  return "archive";
+}
+
+function renderItem(it) {
+  const flag = it.flagged ? `<span class="feed-tag" style="background:#fdeaea;color:#a33;">flagged</span>` : "";
+  const newBadge = bucketFor(it.added) === "today" ? `<span class="feed-tag" style="background:#ffe9c7;color:#8a5300;">new</span>` : "";
+  return `
+    <div class="feed-item">
+      <a href="${it.url}" target="_blank" rel="noopener">${it.title}</a>
+      <div class="feed-meta">${newBadge}${flag}<span class="feed-tag">${it.type}</span><span class="feed-tag source">${sourceNameFromUrl(it.url)}</span>${it.competitor} &middot; ${it.date}</div>
+      <div class="feed-summary">${it.summary}</div>
+    </div>`;
+}
+let totalItems = 0, totalFlaggedRecent = 0;
+
+const tabbarEl = document.getElementById("tabbar");
+const panelsEl = document.getElementById("tabPanels");
+
+DATA.lines.forEach((line, idx) => {
+  totalItems += line.items.length;
+  line.items.forEach(it => { if (it.flagged && bucketFor(it.added) !== "archive") totalFlaggedRecent++; });
+
+  const btn = document.createElement("button");
+  btn.className = "tabbtn" + (idx === 0 ? " active" : "");
+  btn.textContent = line.name;
+  btn.onclick = () => {
+    document.querySelectorAll(".tabbtn").forEach(b => b.classList.remove("active"));
+    document.querySelectorAll(".panel").forEach(p => p.classList.remove("active"));
+    btn.classList.add("active");
+    document.getElementById("panel-" + line.id).classList.add("active");
+  };
+  tabbarEl.appendChild(btn);
+
+  const todayItems = line.items.filter(it => bucketFor(it.added) === "today");
+  const previousItems = line.items.filter(it => bucketFor(it.added) === "previous").sort((a,b) => b.added.localeCompare(a.added));
+  const archiveItems = line.items.filter(it => bucketFor(it.added) === "archive").sort((a,b) => b.added.localeCompare(a.added));
+
   const topicsHtml = line.topics.map(t => `<span class="chip topic">${t}</span>`).join("");
   const watchHtml = line.watchlist.map(w => {
     const chip = w.status === "tracked" ? `<span class="chip tracked">${w.name}</span>` : `<span class="chip pending">${w.name}</span>`;
     return chip;
   }).join("");
-  const itemsHtml = line.items.map(it => {
-    const flag = it.flagged ? `<span class="feed-tag" style="background:#fdeaea;color:#a33;">flagged</span>` : "";
-    return `
-      <div class="feed-item">
-        <a href="${it.url}" target="_blank" rel="noopener">${it.title}</a>
-        <div class="feed-meta">${flag}<span class="feed-tag">${it.type}</span>${it.competitor} &middot; ${it.date}</div>
-        <div class="feed-summary">${it.summary}</div>
-      </div>`;
-  }).join("");
-  cardsEl.insertAdjacentHTML("beforeend", `
-    <div class="card">
+
+  const panel = document.createElement("div");
+  panel.className = "panel" + (idx === 0 ? " active" : "");
+  panel.id = "panel-" + line.id;
+  panel.innerHTML = `
+    <div class="linehead">
       <h2>${line.name}</h2>
       <div class="desc">${line.desc}</div>
       <h3>Topics &amp; buzz</h3>
       <div class="chips">${topicsHtml}</div>
       <h3>Watchlist</h3>
       <div class="chips">${watchHtml}</div>
-      <h3>Recent items</h3>
-      ${itemsHtml}
     </div>
-  `);
+
+    <div class="section-block today">
+      <h3>🔥 New today</h3>
+      ${todayItems.length ? todayItems.map(renderItem).join("") : `<div class="empty-note">Quiet day — nothing new surfaced for ${line.name} today.</div>`}
+    </div>
+
+    <div class="section-block">
+      <h3>Previous (last 30 days)</h3>
+      ${previousItems.length ? previousItems.map(renderItem).join("") : `<div class="empty-note">Nothing in the last 30 days yet.</div>`}
+    </div>
+
+    <div class="section-block">
+      <details class="archive-details">
+        <summary>Archive (older than 30 days) — ${archiveItems.length} item${archiveItems.length === 1 ? "" : "s"}</summary>
+        ${archiveItems.length ? archiveItems.map(renderItem).join("") : `<div class="empty-note">Nothing has aged past 30 days yet — this section fills in over time.</div>`}
+      </details>
+    </div>
+  `;
+  panelsEl.appendChild(panel);
 });
+
+document.getElementById("statsSummary").textContent =
+  `${DATA.lines.length} product lines · ${totalItems} items tracked total · ${totalFlaggedRecent} flagged in the last 30 days`;
 </script>
 </body>
 </html>
