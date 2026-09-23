@@ -100,8 +100,8 @@
 
 <script>
 const DATA = {
-  lastChecked: "2026-09-22",
-  lastCheckedLabel: "Sep 22, 2026",
+  lastChecked: "2026-09-23",
+  lastCheckedLabel: "Sep 23, 2026",
   lines: [
     {
       id: "sitelink",
@@ -112,14 +112,28 @@ const DATA = {
         {name:"Yardi Breeze", status:"tracked"},
         {name:"Yardi Storage Manager", status:"tracked", note:"new institutional-tier product, launched Jan 2026"},
         {name:"SC Navigator", status:"tracked", note:"new unified brand — merger of Storage Commander, Syrasoft, DoorSwap, Space Control & Domico, officially launched Mar 2025; added Sep 22, 2026 once the consolidation surfaced in search"},
+        {name:"Tenant Inc", status:"tracked", note:"upgraded from pending Sep 23, 2026 — launched Alita AI chat (Jun 2026) and a TractIQ competitive-rate integration (Aug 2026)"},
         {name:"Storage Commander", status:"pending", note:"legacy brand now migrating customers to SC Navigator"},
         {name:"Syrasoft Storage Manager", status:"pending", note:"legacy brand now migrating customers to SC Navigator"},
         {name:"Unit Trac", status:"pending"},
-        {name:"Tenant Inc", status:"pending"},
         {name:"DoorLoop", status:"pending"},
         {name:"Innago", status:"pending"}
       ],
       items: [
+        {
+          added: "2026-09-23", date: "Jun 26, 2026", type: "product launch", flagged: true,
+          title: "Tenant Inc. launches Alita, AI-powered chat that converts intent into action for self-storage operators",
+          url: "https://www.insideselfstorage.com/suppliers-products/self-storage-software-provider-tenant-inc-launches-alita-ai-powered-chat",
+          competitor: "Tenant Inc",
+          summary: "Alita is embedded chat that lets renters browse units, complete reservations, authenticate as existing tenants, retrieve gate codes, and get secure payment links via SMS, all inside the chat window, tied to real-time inventory and pricing. A genuine AI-conversion feature launch, not just a chatbot skin — upgraded Tenant Inc from pending to tracked on the strength of this plus the TractIQ integration below."
+        },
+        {
+          added: "2026-09-23", date: "Aug 2026", type: "partnership", flagged: false,
+          title: "Tenant Inc. and TractIQ partner to bring competitive intelligence to self-storage operators",
+          url: "https://www.tenantinc.com/blog/tenant-inc-and-tractiq-partner-to-bring-competitive-intelligence-to-self-storage-operators",
+          competitor: "Tenant Inc",
+          summary: "Embeds TractIQ's market data (competitor street rates within 3/5/10 miles, rate trend lines, geographic heatmaps) directly into Tenant Inc's Hummingbird PMS — automating what used to be manual street-rate surveys. Not a funding/launch-tier event on its own, but reinforces that Tenant Inc is actively building differentiated features rather than sitting still."
+        },
         {
           added: "2026-09-22", date: "Mar 2025 (surfaced Sep 22, 2026)", type: "product launch", flagged: true,
           title: "Five self-storage software brands unite as one: SC Navigator",
@@ -314,7 +328,7 @@ const DATA = {
 document.getElementById("lastChecked").textContent = DATA.lastCheckedLabel;
 
 const banner = document.getElementById("statusBanner");
-banner.innerHTML = "<b>Two items newly flagged today (Sep 22), both platform moves rather than funding or churn signals.</b> Under SiteLink: five legacy brands (Storage Commander, Syrasoft, DoorSwap, Space Control, Domico) have consolidated into a single new platform, <b>SC Navigator</b> — added as its own tracked entry. Under Storable Edge and Storable Easy: <b>QuikStor</b> unveiled its biggest platform release yet at SSA Fall 2026 (AI revenue management, AI voice automation, conversational reporting) — a real bar-raise on the AI-automation ground Storable competes on there. Standing top signals are unchanged otherwise: Cubby's $63M Series A (Storable Easy) and Yardi's institutional-tier \"Yardi Storage Manager\" (SiteLink) remain the two biggest developments this quarter. Two new pending competitors were added to the Storable Easy watchlist — OpenUnit (YC-backed, Toronto) and Selfstorage.team (Germany-based) — both surfaced via category listings rather than direct news, so US relevance is unconfirmed.";
+banner.innerHTML = "<b>One new flagged item today (Sep 23): Tenant Inc under SiteLink.</b> Tenant Inc launched Alita, an AI-powered chat that lets renters complete reservations and payments directly in-chat (June 2026), and separately partnered with TractIQ to embed automated competitive rate benchmarking into its Hummingbird PMS (August 2026) — enough sustained product activity to move Tenant Inc from pending to tracked. Yesterday's two flags (SC Navigator's five-brand merger under SiteLink, and QuikStor's SSA Fall platform release under Edge/Easy) have aged into the Previous section — still recent, no longer \"new today.\" No new churn-risk forum activity and no new competitors surfaced today; Space Manager, KINNOVIS, Stora, Storman, Innago, and DoorLoop were checked with nothing new to report.";
 
 // ---- helpers ----
 function sourceNameFromUrl(url) {
@@ -332,7 +346,8 @@ function sourceNameFromUrl(url) {
       "capterra.com": "Capterra",
       "selecthub.com": "SelectHub",
       "cubbystorage.com": "Cubby (company site)",
-      "6storage.com": "6Storage (company site)"
+      "6storage.com": "6Storage (company site)",
+      "tenantinc.com": "Tenant Inc (company site)"
     };
     return map[host] || host;
   } catch (e) {
