@@ -101,8 +101,8 @@
 
 <script>
 const DATA = {
-  lastChecked: "2026-09-25",
-  lastCheckedLabel: "Sep 25, 2026",
+  lastChecked: "2026-09-28",
+  lastCheckedLabel: "Sep 28, 2026",
   lines: [
     {
       id: "sitelink",
@@ -111,16 +111,31 @@ const DATA = {
       topics: ["institutional & multi-site software", "forced cloud migrations pushing switchers", "AI sales engagement bundling", "vendor consolidation via M&A"],
       watchlist: [
         {name:"Yardi Breeze", status:"tracked"},
-        {name:"Yardi Storage Manager", status:"tracked", note:"new institutional-tier product, launched Jan 2026"},
-        {name:"SC Navigator", status:"tracked", note:"new unified brand — merger of Storage Commander, Syrasoft, DoorSwap, Space Control & Domico, officially launched Mar 2025; added Sep 22, 2026 once the consolidation surfaced in search"},
-        {name:"Tenant Inc", status:"tracked", note:"upgraded from pending Sep 23, 2026 — launched Alita AI chat (Jun 2026) and a TractIQ competitive-rate integration (Aug 2026); Sep 24, 2026 — Self-Storage Talk posts show operators actively switching from SiteLink to Tenant Inc's Hummingbird, citing payment-processor lock-in and feature gaps"},
+        {name:"Yardi Storage Manager", status:"tracked", note:"new institutional-tier product, launched Jan 2026; Aug 2026 — Mini Mall Storage (280+ facilities) selected it as its enterprise solution"},
+        {name:"SC Navigator", status:"tracked", note:"new unified brand — merger of Storage Commander, Syrasoft, DoorSwap, Space Control & Domico, officially launched Mar 2025; added Sep 22, 2026 once the consolidation surfaced in search; checked Sep 28, 2026 — now standardized dashboards across 2,000+ sites, nothing new"},
+        {name:"Tenant Inc", status:"tracked", note:"upgraded from pending Sep 23, 2026 — launched Alita AI chat (Jun 2026) and a TractIQ competitive-rate integration (Aug 2026); Sep 24, 2026 — Self-Storage Talk posts show operators actively switching from SiteLink to Tenant Inc's Hummingbird, citing payment-processor lock-in and feature gaps; checked Sep 28, 2026 — also integrated Patchwork Labs' AI voice/collections platform into Hummingbird (Jun 2026, via its open Nectar API) — old news, not a new development this run"},
         {name:"Storage Commander", status:"pending", note:"legacy brand now migrating customers to SC Navigator"},
         {name:"Syrasoft Storage Manager", status:"pending", note:"legacy brand now migrating customers to SC Navigator"},
         {name:"Unit Trac", status:"pending"},
         {name:"DoorLoop", status:"pending"},
-        {name:"Innago", status:"pending"}
+        {name:"Innago", status:"pending"},
+        {name:"Storesync", status:"pending", note:"added Sep 28, 2026 (weekly new-competitor search) — Sydney, Australia-based; positions itself from single-site through enterprise portfolios; $99–150/mo base pricing"}
       ],
       items: [
+        {
+          added: "2026-09-28", date: "Jun 15, 2026 (surfaced Sep 28, 2026)", type: "partnership", flagged: false,
+          title: "Tenant Inc. integrates Patchwork Labs' AI voice platform into Hummingbird",
+          url: "https://www.insideselfstorage.com/suppliers-products/tenant-inc-adds-patchwork-labs-ai-platform-to-hummingbird-self-storage-management-software",
+          competitor: "Tenant Inc",
+          summary: "Built on Tenant's open Nectar API: 24/7 AI inbound call handling, outbound delinquency workflows, and automatic account/payment sync into Hummingbird with no manual reconciliation. Dated back to June 2026, so it's old news resurfacing, not a new flag — but another data point that Tenant Inc keeps shipping real AI-automation depth rather than sitting still."
+        },
+        {
+          added: "2026-09-28", date: "Sep 28, 2026", type: "new competitor", flagged: false,
+          title: "New name on the radar: Storesync (Sydney, Australia)",
+          url: "https://storesync.com.au/",
+          competitor: "Storesync",
+          summary: "Surfaced via this week's new-competitor sweep. Bookings, billing, access control, ops and retail in one platform, explicitly positioned from new/single-site operators up through multi-site and enterprise portfolios — so it could eventually brush up against SiteLink, Edge, or Easy depending on how it grows in the US. Added as pending; watching for US market entry signals."
+        },
         {
           added: "2026-09-24", date: "Sep 2026", type: "forum / churn risk", flagged: true,
           title: "Self-Storage Talk: operators cite SiteLink payment-processor lock-in and feature gaps in switch to Tenant Inc's Hummingbird",
@@ -195,18 +210,18 @@ const DATA = {
         {name:"6Storage", status:"tracked"},
         {name:"Storeganise", status:"tracked"},
         {name:"StoreEase", status:"tracked", note:"AI staffing-tool entrant"},
-        {name:"Stora", status:"tracked"},
+        {name:"Stora", status:"tracked", note:"checked Sep 28, 2026 — ranked #2 in SelectHub directory; integrated with CIA access control (already tracked); nothing new"},
         {name:"Self Storage Manager", status:"tracked"},
         {name:"QuikStor", status:"tracked", note:"biggest platform release yet, unveiled SSA Fall 2026 (Sep 2026); also shipped a Lien Automation Module in Apr 2026, surfaced Sep 25, 2026"},
-        {name:"Space Manager", status:"pending"},
-        {name:"KINNOVIS", status:"pending"},
+        {name:"Space Manager", status:"pending", note:"checked Sep 28, 2026 — cloud-based multi-site platform, 30+ years industry background; nothing new"},
+        {name:"KINNOVIS", status:"pending", note:"checked Sep 28, 2026 — UK/Europe-based AI platform (JaneAI chatbot), 4.93/5 rated, now serving Americas/Europe/Australasia/Pacific Asia; no new 2026 developments beyond ongoing geographic expansion"},
         {name:"StoragePug", status:"pending", note:"added Sep 21, 2026 — web-conversion tool positioned against Edge's marketing bundle; checked again Sep 25, 2026, nothing new beyond routine review coverage"}
       ],
       items: [
         {
           added: "2026-09-25", date: "Apr 2026 (surfaced Sep 25, 2026)", type: "product launch", flagged: false,
           title: "QuikStor launches Lien Automation Module",
-          url: "https://www.prvep.com/releases/quikstor-launches-lien-automation-module-taking-the-industrys-most-operationally-risky-process-off-operators-plates-302760899.html",
+          url: "https://www.prweb.com/releases/quikstor-launches-lien-automation-module-taking-the-industrys-most-operationally-risky-process-off-operators-plates-302760899.html",
           competitor: "QuikStor",
           summary: "End-to-end automation of the lien/auction workflow (first notice through auction close), live for all QuikStor Management Software customers as part of QuikStor's April 2026 release cycle. Predates the SSA Fall 2026 platform release already tracked below; not flag-tier alone, but shows a steady cadence of substantive feature investment, not just marketing."
         },
@@ -270,16 +285,25 @@ const DATA = {
         {name:"Cubby", status:"tracked", note:"confirmed real competitor — not just a generic-word collision; Sep 25, 2026 — hired Andrew Capranos (ex-president, 10 Federal Storage) as President, Self-Storage"},
         {name:"QuikStor", status:"tracked", note:"biggest platform release yet, unveiled SSA Fall 2026 (Sep 2026); also shipped a Lien Automation Module in Apr 2026, surfaced Sep 25, 2026"},
         {name:"Self Storage Manager", status:"tracked"},
-        {name:"Storman", status:"tracked", note:"checked Sep 25, 2026 — search surfaced an old (2014) Ezidebit acquisition, not new; no 2026 developments found"},
+        {name:"Storman", status:"tracked", note:"checked Sep 25, 2026 — search surfaced an old (2014) Ezidebit acquisition, not new; checked again Sep 28, 2026 — OpenTech Alliance/INSOMNIAC CIA access-control integration (Aug 4, 2026, already tracked), no new developments"},
         {name:"CCStorage", status:"tracked", note:"Sep 24, 2026 — integrated StorageDefender unit-level monitoring/tenant-subscription tech directly into its platform; checked again Sep 25, 2026, nothing new"},
-        {name:"WebSelfStorage", status:"tracked"},
+        {name:"WebSelfStorage", status:"tracked", note:"checked Sep 28, 2026 — #1 ranked in SelectHub directory; mixed reviews (bugs/support complaints cited); no new 2026 developments"},
         {name:"Innago", status:"pending"},
         {name:"DoorLoop", status:"pending"},
         {name:"Storagely", status:"pending", note:"added Sep 21, 2026 — third-party rental-site layer now integrating with both Cubby and QuikStor; not a direct management-software competitor, watching for expansion"},
-        {name:"OpenUnit", status:"pending", note:"added Sep 22, 2026 — YC-backed (W20), Toronto-based, free-with-payments pricing model aimed at small single-facility operators; checked again Sep 25, 2026, mixed reviews, nothing new"},
-        {name:"Selfstorage.team", status:"pending", note:"added Sep 22, 2026 — Germany-based cloud storage management software, surfaced via Capterra category listing; US relevance unconfirmed"}
+        {name:"OpenUnit", status:"pending", note:"added Sep 22, 2026 — YC-backed (W20), Toronto-based, free-with-payments pricing model aimed at small single-facility operators; checked again Sep 25, 2026, mixed reviews, nothing new; checked Sep 28, 2026, still nothing new"},
+        {name:"Selfstorage.team", status:"pending", note:"added Sep 22, 2026 — Germany-based cloud storage management software, surfaced via Capterra category listing; US relevance unconfirmed"},
+        {name:"U-Haul Storage Software", status:"pending", note:"added Sep 28, 2026 (weekly new-competitor search) — free management software U-Haul offers its Storage Affiliate Network members; no-cost pricing pressure at the very low end"},
+        {name:"Mini-Manager (Trackum)", status:"pending", note:"added Sep 28, 2026 (weekly new-competitor search) — legacy one-time-fee ($469) desktop software for Mom & Pop single-facility operators, around since 2000; not new to the market, just newly tracked here"}
       ],
       items: [
+        {
+          added: "2026-09-28", date: "Sep 28, 2026", type: "new competitor", flagged: false,
+          title: "New names on the radar: U-Haul's free storage software, and legacy player Mini-Manager",
+          url: "https://www.openunit.com/",
+          competitor: "U-Haul / Mini-Manager",
+          summary: "Weekly new-competitor sweep for the low-cost end of the Easy segment surfaced two names not previously tracked: U-Haul offers free management software to its Storage Affiliate Network members (no monthly fee, aimed at very small operators), and Mini-Manager (by Trackum) is a 25+ year old one-time-fee ($469) desktop tool for Mom & Pop single-facility owners. Neither is a new entrant — both reinforce the existing no-cost/low-cost pricing-pressure topic on this line rather than adding a new threat vector."
+        },
         {
           added: "2026-09-25", date: "Sep 22, 2026", type: "leadership hire", flagged: false,
           title: "Cubby names Andrew Capranos as President, Self-Storage",
@@ -290,7 +314,7 @@ const DATA = {
         {
           added: "2026-09-25", date: "Apr 2026 (surfaced Sep 25, 2026)", type: "product launch", flagged: false,
           title: "QuikStor launches Lien Automation Module",
-          url: "https://www.prvep.com/releases/quikstor-launches-lien-automation-module-taking-the-industrys-most-operationally-risky-process-off-operators-plates-302760899.html",
+          url: "https://www.prweb.com/releases/quikstor-launches-lien-automation-module-taking-the-industrys-most-operationally-risky-process-off-operators-plates-302760899.html",
           competitor: "QuikStor",
           summary: "Same Lien Automation Module noted under Edge — relevant here too since QuikStor's single-facility installs are core to the Easy segment."
         },
@@ -304,7 +328,7 @@ const DATA = {
         {
           added: "2026-09-22", date: "Sep 2026", type: "product launch", flagged: true,
           title: "QuikStor arrives at SSA Fall 2026 with its most powerful platform yet",
-          url: "https://www.prvep.com/releases/quikstor-arrives-at-ssa-with-its-most-powerful-platform-yet-built-by-operators-for-operators-302871007.html",
+          url: "https://www.prweb.com/releases/quikstor-arrives-at-ssa-with-its-most-powerful-platform-yet-built-by-operators-for-operators-302871007.html",
           competitor: "QuikStor",
           summary: "Same SSA Fall 2026 release noted under Edge — relevant here too since QuikStor's single-facility installs are core to the Easy segment. AI revenue management, AI voice automation, and conversational reporting raise the bar on what small operators will expect from Storable Easy."
         },
@@ -325,7 +349,7 @@ const DATA = {
         {
           added: "2026-09-21", date: "Sep 17, 2026", type: "partnership", flagged: false,
           title: "QuikStor integrates with Storagely to auto-convert website traffic into rentals",
-          url: "https://www.prvep.com/releases/quikstor-and-storagely-integrate-to-turn-website-traffic-into-rentals-automatically-302881721.html",
+          url: "https://www.prweb.com/releases/quikstor-and-storagely-integrate-to-turn-website-traffic-into-rentals-automatically-302881721.html",
           competitor: "QuikStor",
           summary: "Same Storagely integration noted under Edge — relevant here too since QuikStor's single-facility installs are core to the Easy segment."
         },
@@ -372,7 +396,7 @@ const DATA = {
 document.getElementById("lastChecked").textContent = DATA.lastCheckedLabel;
 
 const banner = document.getElementById("statusBanner");
-banner.innerHTML = "<b>Quiet day — nothing newly flagged (Sep 25).</b> Checked Yardi Storage Manager, the SC Navigator/Storage Commander consolidation, and SiteLink switching threads for SiteLink; QuikStor, Stora, and StoragePug for Edge; Cubby, Storman, CCStorage, and OpenUnit for Easy. Logged two non-flagged items worth knowing about: QuikStor shipped a Lien Automation Module back in April 2026 (relevant to both Edge and Easy), and Cubby hired Andrew Capranos — a 12-year self-storage operating veteran, most recently president of 10 Federal Storage — as President, Self-Storage. One false alarm ruled out: a Storman/Ezidebit \"acquisition\" surfaced in search results but turned out to be a stale 2014 deal, not new. No new competitors surfaced this run.";
+banner.innerHTML = "<b>Quiet day — nothing newly flagged (Sep 28).</b> Checked Yardi Storage Manager, Tenant Inc, and SC Navigator for SiteLink; Stora, Space Manager, and KINNOVIS for Edge; Storman, WebSelfStorage, and OpenUnit for Easy — plus the weekly new-competitor sweep across all three lines. Two new pending names surfaced: Storesync (Sydney, Australia, single-site-to-enterprise) on the SiteLink watchlist, and on Easy, U-Haul's free Storage Affiliate Network software plus the legacy one-time-fee tool Mini-Manager — both reinforcing the existing low-cost pricing-pressure theme rather than a new threat. Also logged an old (Jun 2026) Tenant Inc/Patchwork Labs AI integration that hadn't been in the feed yet. No confirmed funding, acquisitions, or churn-risk patterns this run.";
 
 // ---- helpers ----
 function sourceNameFromUrl(url) {
@@ -391,7 +415,15 @@ function sourceNameFromUrl(url) {
       "selecthub.com": "SelectHub",
       "cubbystorage.com": "Cubby (company site)",
       "6storage.com": "6Storage (company site)",
-      "tenantinc.com": "Tenant Inc (company site)"
+      "tenantinc.com": "Tenant Inc (company site)",
+      "storesync.com.au": "Storesync (company site)",
+      "openunit.com": "OpenUnit (company site)",
+      "minimanager.com": "Mini-Manager (company site)",
+      "kinnovis.com": "Kinnovis (company site)",
+      "space-manager.com": "Space Manager (company site)",
+      "storman.com": "Storman (company site)",
+      "opentechalliance.com": "OpenTech Alliance",
+      "storagecommander.com": "Storage Commander (company site)"
     };
     return map[host] || host;
   } catch (e) {
