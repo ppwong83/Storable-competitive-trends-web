@@ -83,15 +83,15 @@
 
 <div class="method">
   <h2>How this loop works</h2>
-  <p><b>Purpose:</b> surface real competitive movement — funding, launches, partnerships, acquisitions, notable review/sentiment shifts, and forum chatter about switching software — for competitors to SiteLink, Storable Edge, and Storable Easy, before it becomes competitive pressure.</p>
+  <p><b>Purpose:</b> surface real competitive movement - funding, launches, partnerships, acquisitions, notable review/sentiment shifts, and forum chatter about switching software - for competitors to SiteLink, Storable Edge, and Storable Easy, before it becomes competitive pressure.</p>
   <ol>
-    <li><b>Sources:</b> industry trade press (Inside Self Storage, Mini Storage Messenger, StorageNewsletter, SSA), general web/PR (funding, launch, M&amp;A, partnership announcements), review sites (G2, Capterra, GetApp — new reviews, rating shifts, feature mentions), and community chatter (Self-Storage Talk forum, and social platforms where reachable). Each item shows its source domain directly.</li>
+    <li><b>Sources:</b> industry trade press (Inside Self Storage, Mini Storage Messenger, StorageNewsletter, SSA), general web/PR (funding, launch, M&amp;A, partnership announcements), review sites (G2, Capterra, GetApp - new reviews, rating shifts, feature mentions), and community chatter (Self-Storage Talk forum, and social platforms where reachable). Each item shows its source domain directly.</li>
     <li><b>Check cadence:</b> weekdays. Each run rotates through a subset of tracked competitors so the full watchlist gets covered over the week rather than everything at once.</li>
     <li><b>Layout:</b> each product line tab shows what's new today at the top, a rolling 30-day "previous" view below that, and an archive of anything older than 30 days, collapsed by default.</li>
-    <li><b>Acts when:</b> a genuinely new item shows up — not the same forum thread or review page resurfacing. Items are deduped against a seen-URL list per product line.</li>
-    <li><b>Flagging:</b> an item is marked <span class="chip flagged">flagged</span> when it's a funding round, acquisition, major product launch/relaunch, or a forum/review pattern suggesting real churn risk (e.g. a forced migration frustrating users) — not routine listicle or comparison-page noise.</li>
-    <li><b>Expansion:</b> new competitor names surfaced in any source get added to the relevant line's watchlist as <span class="chip pending">pending</span> automatically — the list keeps growing, it isn't fixed to what we started with.</li>
-    <li><b>State:</b> stored in <code>state.json</code> in a persistent working folder — watchlist, topics, seen-URL dedupe list, and the recent-items feed per line.</li>
+    <li><b>Acts when:</b> a genuinely new item shows up - not the same forum thread or review page resurfacing. Items are deduped against a seen-URL list per product line.</li>
+    <li><b>Flagging:</b> an item is marked <span class="chip flagged">flagged</span> when it's a funding round, acquisition, major product launch/relaunch, or a forum/review pattern suggesting real churn risk (e.g. a forced migration frustrating users) - not routine listicle or comparison-page noise.</li>
+    <li><b>Expansion:</b> new competitor names surfaced in any source get added to the relevant line's watchlist as <span class="chip pending">pending</span> automatically - the list keeps growing, it isn't fixed to what we started with.</li>
+    <li><b>State:</b> stored in <code>state.json</code> in a persistent working folder - watchlist, topics, seen-URL dedupe list, and the recent-items feed per line.</li>
     <li><b>Stop / bail-out:</b> if searches fail 3 checks in a row, this page shows a red banner asking for a manual look instead of failing silently.</li>
     <li><b>Output:</b> this page, refreshed in place each weekday morning, plus a dated snapshot saved to an archive folder for historical review.</li>
   </ol>
@@ -101,8 +101,8 @@
 
 <script>
 const DATA = {
-  lastChecked: "2026-09-30",
-  lastCheckedLabel: "Sep 30, 2026",
+  lastChecked: "2026-10-01",
+  lastCheckedLabel: "Oct 1, 2026",
   lines: [
     {
       id: "sitelink",
@@ -111,73 +111,80 @@ const DATA = {
       topics: ["institutional & multi-site software", "forced cloud migrations pushing switchers", "AI sales engagement bundling", "vendor consolidation via M&A"],
       watchlist: [
         {name:"Yardi Breeze", status:"tracked"},
-        {name:"Yardi Storage Manager", status:"tracked", note:"new institutional-tier product, launched Jan 2026; Aug 2026 — Mini Mall Storage (280+ facilities) selected it as its enterprise solution; checked Sep 29, 2026 — Yardi Breeze Spring 2026 update and continued SSA Fall presence, nothing new beyond what's tracked"},
-        {name:"SC Navigator", status:"tracked", note:"new unified brand — merger of Storage Commander, Syrasoft, DoorSwap, Space Control & Domico, officially launched Mar 2025; added Sep 22, 2026 once the consolidation surfaced in search; checked Sep 28, 2026 — now standardized dashboards across 2,000+ sites, nothing new; checked Sep 30, 2026 — SSA Spring 2026 release added \"Ask JOEL,\" an AI-powered data-analytics tool, plus improved customer communications/reporting (feature add, not flagged)"},
-        {name:"Tenant Inc", status:"tracked", note:"upgraded from pending Sep 23, 2026 — launched Alita AI chat (Jun 2026) and a TractIQ competitive-rate integration (Aug 2026); Sep 24, 2026 — Self-Storage Talk posts show operators actively switching from SiteLink to Tenant Inc's Hummingbird, citing payment-processor lock-in and feature gaps; checked Sep 28, 2026 — also integrated Patchwork Labs' AI voice/collections platform into Hummingbird (Jun 2026, via its open Nectar API) — old news; checked Sep 29, 2026 — additional forum threads confirm the same churn pattern (one operator cited dropping from ~$1,200/mo SiteLink+StoragePug to ~$500/mo Hummingbird), no new flag beyond what's tracked"},
-        {name:"Storage Commander", status:"pending", note:"legacy brand now migrating customers to SC Navigator"},
-        {name:"Syrasoft Storage Manager", status:"pending", note:"legacy brand now migrating customers to SC Navigator"},
-        {name:"Unit Trac", status:"pending", note:"checked Sep 29, 2026 — #3 in SelectHub directory, 83/100 score, $30/mo entry price; nothing beyond directory/review listings"},
-        {name:"DoorLoop", status:"pending", note:"checked Sep 29, 2026 — expanding into self-storage alongside HOAs/affordable housing; tops Capterra's 2026 Property Management Shortlist and listed on its 2026 Self Storage Shortlist (4.8/703 reviews); the often-cited $20M Series A is from 2022, not new — verified before deciding not to flag; checked Sep 30, 2026 — retained the #1 Capterra Property Management spot for a 2nd consecutive year, nothing new"},
-        {name:"Innago", status:"pending", note:"checked Sep 29, 2026 — free-to-landlords positioning continues, added damage-report/recurring-maintenance features; no major news; checked Sep 30, 2026 — mixed 2026 reviews (6–10/10, glitch complaints), still AAOA's exclusive suggested PM software, nothing major"},
-        {name:"Storesync", status:"pending", note:"added Sep 28, 2026 (weekly new-competitor search) — Sydney, Australia-based; positions itself from single-site through enterprise portfolios; $99–150/mo base pricing"},
-        {name:"Storlogix Cloud", status:"pending", note:"added Sep 30, 2026 — surfaced via a Self-Storage Talk forum thread on operators migrating from Storlogix Desktop/standalone to Storlogix Cloud; tier and scale unconfirmed, watching"}
+        {name:"Yardi Storage Manager", status:"tracked", note:"new institutional-tier product, launched Jan 2026; Aug 2026 - Mini Mall Storage (280+ facilities) selected it as its enterprise solution; checked Sep 29, 2026 - Yardi Breeze Spring 2026 update and continued SSA Fall presence, nothing new beyond what's tracked"},
+        {name:"SC Navigator", status:"tracked", note:"new unified brand - merger of Storage Commander, Syrasoft, DoorSwap, Space Control & Domico, officially launched Mar 2025; added Sep 22, 2026 once the consolidation surfaced in search; checked Sep 28, 2026 - now standardized dashboards across 2,000+ sites, nothing new; checked Sep 30, 2026 - SSA Spring 2026 release added \"Ask JOEL,\" an AI-powered data-analytics tool, plus improved customer communications/reporting (feature add, not flagged)"},
+        {name:"Tenant Inc", status:"tracked", note:"upgraded from pending Sep 23, 2026 - launched Alita AI chat (Jun 2026) and a TractIQ competitive-rate integration (Aug 2026); Sep 24, 2026 - Self-Storage Talk posts show operators actively switching from SiteLink to Tenant Inc's Hummingbird, citing payment-processor lock-in and feature gaps; checked Sep 28, 2026 - also integrated Patchwork Labs' AI voice/collections platform into Hummingbird (Jun 2026, via its open Nectar API) - old news; checked Sep 29, 2026 - additional forum threads confirm the same churn pattern (one operator cited dropping from ~$1,200/mo SiteLink+StoragePug to ~$500/mo Hummingbird), no new flag beyond what's tracked"},
+        {name:"Storage Commander", status:"pending", note:"legacy brand now migrating customers to SC Navigator; checked Oct 1, 2026 - forum chatter shows routine two-way switching (one operator moved from QuikStor to Storage Commander, live Jan 2026; others complain of unresponsive support and a rocky migration), consistent with ongoing migration noise already tracked, not a new flag"},
+        {name:"Syrasoft Storage Manager", status:"pending", note:"legacy brand now migrating customers to SC Navigator; checked Oct 1, 2026 - no new developments"},
+        {name:"Unit Trac", status:"pending", note:"checked Sep 29, 2026 - #3 in SelectHub directory, 83/100 score, $30/mo entry price; nothing beyond directory/review listings"},
+        {name:"DoorLoop", status:"pending", note:"checked Sep 29, 2026 - expanding into self-storage alongside HOAs/affordable housing; tops Capterra's 2026 Property Management Shortlist and listed on its 2026 Self Storage Shortlist (4.8/703 reviews); the often-cited $20M Series A is from 2022, not new - verified before deciding not to flag; checked Sep 30, 2026 - retained the #1 Capterra Property Management spot for a 2nd consecutive year, nothing new"},
+        {name:"Innago", status:"pending", note:"checked Sep 29, 2026 - free-to-landlords positioning continues, added damage-report/recurring-maintenance features; no major news; checked Sep 30, 2026 - mixed 2026 reviews (6-10/10, glitch complaints), still AAOA's exclusive suggested PM software, nothing major"},
+        {name:"Storesync", status:"pending", note:"added Sep 28, 2026 (weekly new-competitor search) - Sydney, Australia-based; positions itself from single-site through enterprise portfolios; $99-150/mo base pricing; checked Oct 1, 2026 - no new developments"},
+        {name:"Storlogix Cloud", status:"pending", note:"added Sep 30, 2026 - surfaced via a Self-Storage Talk forum thread on operators migrating from Storlogix Desktop/standalone to Storlogix Cloud; checked Oct 1, 2026 - clarified this is PTI Security's access-control cloud software (dark-mode UI, CloudController portfolio dashboard, DoorSwap integration, Yardi Breeze integration, a new real-time Storable Edge data sync as of Jul 2026), not a standalone PMS, so it's an access-control layer sold alongside/into SiteLink-class operators rather than a direct PMS replacement; stays pending given that narrower scope, not flagged"}
       ],
       items: [
+        {
+          added: "2026-10-01", date: "Oct 1, 2026", type: "clarification", flagged: false,
+          title: "Storlogix Cloud clarified as PTI's access-control layer, not a standalone PMS",
+          url: "https://www.insideselfstorage.com/suppliers-products/pti-updates-storlogix-cloud-access-control-software-for-self-storage",
+          competitor: "Storlogix Cloud",
+          summary: "Follow-up research on the Storlogix Cloud name added Sep 30 from forum chatter: it's PTI Security's cloud access-control software (dark-mode UI, portfolio dashboard via a new CloudController, integrations with DoorSwap and Yardi Breeze, plus a Jul 2026 real-time data sync with Storable Edge), not a competing full PMS. Kept pending on the watchlist as an access-control adjacency rather than a direct SiteLink replacement threat."
+        },
         {
           added: "2026-09-30", date: "Sep 30, 2026", type: "new competitor", flagged: false,
           title: "New name on the radar: Storlogix Cloud",
           url: "https://www.selfstoragetalk.com/forum/general-self-storage-forums/technology-software-and-security/227433-storlogix-cloud",
           competitor: "Storlogix Cloud",
-          summary: "Surfaced via a Self-Storage Talk thread on operators moving from Storlogix Desktop/standalone to a new Storlogix Cloud offering. Added as pending — tier and US market scale aren't confirmed yet, watching for more signal before deciding if it's a real SiteLink-tier threat."
+          summary: "Surfaced via a Self-Storage Talk thread on operators moving from Storlogix Desktop/standalone to a new Storlogix Cloud offering. Added as pending - tier and US market scale aren't confirmed yet, watching for more signal before deciding if it's a real SiteLink-tier threat."
         },
         {
           added: "2026-09-28", date: "Jun 15, 2026 (surfaced Sep 28, 2026)", type: "partnership", flagged: false,
           title: "Tenant Inc. integrates Patchwork Labs' AI voice platform into Hummingbird",
           url: "https://www.insideselfstorage.com/suppliers-products/tenant-inc-adds-patchwork-labs-ai-platform-to-hummingbird-self-storage-management-software",
           competitor: "Tenant Inc",
-          summary: "Built on Tenant's open Nectar API: 24/7 AI inbound call handling, outbound delinquency workflows, and automatic account/payment sync into Hummingbird with no manual reconciliation. Dated back to June 2026, so it's old news resurfacing, not a new flag — but another data point that Tenant Inc keeps shipping real AI-automation depth rather than sitting still."
+          summary: "Built on Tenant's open Nectar API: 24/7 AI inbound call handling, outbound delinquency workflows, and automatic account/payment sync into Hummingbird with no manual reconciliation. Dated back to June 2026, so it's old news resurfacing, not a new flag - but another data point that Tenant Inc keeps shipping real AI-automation depth rather than sitting still."
         },
         {
           added: "2026-09-28", date: "Sep 28, 2026", type: "new competitor", flagged: false,
           title: "New name on the radar: Storesync (Sydney, Australia)",
           url: "https://storesync.com.au/",
           competitor: "Storesync",
-          summary: "Surfaced via this week's new-competitor sweep. Bookings, billing, access control, ops and retail in one platform, explicitly positioned from new/single-site operators up through multi-site and enterprise portfolios — so it could eventually brush up against SiteLink, Edge, or Easy depending on how it grows in the US. Added as pending; watching for US market entry signals."
+          summary: "Surfaced via this week's new-competitor sweep. Bookings, billing, access control, ops and retail in one platform, explicitly positioned from new/single-site operators up through multi-site and enterprise portfolios - so it could eventually brush up against SiteLink, Edge, or Easy depending on how it grows in the US. Added as pending; watching for US market entry signals."
         },
         {
           added: "2026-09-24", date: "Sep 2026", type: "forum / churn risk", flagged: true,
           title: "Self-Storage Talk: operators cite SiteLink payment-processor lock-in and feature gaps in switch to Tenant Inc's Hummingbird",
           url: "https://www.selfstoragetalk.com/forum/general-self-storage-forums/technology-software-and-security/224635-time-to-change-software-looking-for-recommendations-please/page2",
           competitor: "Tenant Inc",
-          summary: "Forum posters describe leaving SiteLink for Tenant Inc's Hummingbird, naming being locked into Storable's payment processor, no major new features in years, and missing built-in websites, SMS/texting, and payment links as the reasons. Tenant Inc is called out by name as the lower-cost, more modern alternative — a direct churn-risk signal against Storable's own SiteLink product."
+          summary: "Forum posters describe leaving SiteLink for Tenant Inc's Hummingbird, naming being locked into Storable's payment processor, no major new features in years, and missing built-in websites, SMS/texting, and payment links as the reasons. Tenant Inc is called out by name as the lower-cost, more modern alternative - a direct churn-risk signal against Storable's own SiteLink product."
         },
         {
           added: "2026-09-24", date: "2026", type: "customer win", flagged: false,
           title: "Mini Mall Storage selects Yardi Storage Manager",
           url: "https://www.yardi.com/news/press-releases/mini-mall-storage-selects-yardi-storage-manager/",
           competitor: "Yardi",
-          summary: "Mini Mall Storage picked Yardi Storage Manager to centralize data and standardize workflows across 280+ facilities in the US and Canada — continued momentum after the product's Jan 2026 launch, not a new flag on its own."
+          summary: "Mini Mall Storage picked Yardi Storage Manager to centralize data and standardize workflows across 280+ facilities in the US and Canada - continued momentum after the product's Jan 2026 launch, not a new flag on its own."
         },
         {
           added: "2026-09-23", date: "Jun 26, 2026", type: "product launch", flagged: true,
           title: "Tenant Inc. launches Alita, AI-powered chat that converts intent into action for self-storage operators",
           url: "https://www.insideselfstorage.com/suppliers-products/self-storage-software-provider-tenant-inc-launches-alita-ai-powered-chat",
           competitor: "Tenant Inc",
-          summary: "Alita is embedded chat that lets renters browse units, complete reservations, authenticate as existing tenants, retrieve gate codes, and get secure payment links via SMS, all inside the chat window, tied to real-time inventory and pricing. A genuine AI-conversion feature launch, not just a chatbot skin — upgraded Tenant Inc from pending to tracked on the strength of this plus the TractIQ integration below."
+          summary: "Alita is embedded chat that lets renters browse units, complete reservations, authenticate as existing tenants, retrieve gate codes, and get secure payment links via SMS, all inside the chat window, tied to real-time inventory and pricing. A genuine AI-conversion feature launch, not just a chatbot skin - upgraded Tenant Inc from pending to tracked on the strength of this plus the TractIQ integration below."
         },
         {
           added: "2026-09-23", date: "Aug 2026", type: "partnership", flagged: false,
           title: "Tenant Inc. and TractIQ partner to bring competitive intelligence to self-storage operators",
           url: "https://www.tenantinc.com/blog/tenant-inc-and-tractiq-partner-to-bring-competitive-intelligence-to-self-storage-operators",
           competitor: "Tenant Inc",
-          summary: "Embeds TractIQ's market data (competitor street rates within 3/5/10 miles, rate trend lines, geographic heatmaps) directly into Tenant Inc's Hummingbird PMS — automating what used to be manual street-rate surveys. Not a funding/launch-tier event on its own, but reinforces that Tenant Inc is actively building differentiated features rather than sitting still."
+          summary: "Embeds TractIQ's market data (competitor street rates within 3/5/10 miles, rate trend lines, geographic heatmaps) directly into Tenant Inc's Hummingbird PMS - automating what used to be manual street-rate surveys. Not a funding/launch-tier event on its own, but reinforces that Tenant Inc is actively building differentiated features rather than sitting still."
         },
         {
           added: "2026-09-22", date: "Mar 2025 (surfaced Sep 22, 2026)", type: "product launch", flagged: true,
           title: "Five self-storage software brands unite as one: SC Navigator",
           url: "https://www.modernstoragemedia.com/news/five-self-storage-software-brands-unite-as-one-sc-navigator",
           competitor: "Storage Commander / Syrasoft",
-          summary: "Storage Commander, Syrasoft, DoorSwap, Space Control, and Domico merged into a single cloud SaaS platform, SC Navigator, aimed at operators from independent owners to national portfolios — directly overlapping SiteLink's multi-site/enterprise positioning. Both legacy pending entries are kept on the watchlist since existing customers are still being migrated; SC Navigator added as its own tracked entry."
+          summary: "Storage Commander, Syrasoft, DoorSwap, Space Control, and Domico merged into a single cloud SaaS platform, SC Navigator, aimed at operators from independent owners to national portfolios - directly overlapping SiteLink's multi-site/enterprise positioning. Both legacy pending entries are kept on the watchlist since existing customers are still being migrated; SC Navigator added as its own tracked entry."
         },
         {
           added: "2026-09-18", date: "2026", type: "press release", flagged: true,
@@ -198,11 +205,11 @@ const DATA = {
           title: "QuikStor Express users forced to migrate to QMS cloud platform",
           url: "https://www.selfstoragetalk.com/forum/general-self-storage-forums/technology-software-and-security/226030-quikstor-forced-migration-im-seeking-next-steps-feedback",
           competitor: "QuikStor",
-          summary: "Older QuikStor Express installs are losing online payment/reservation capability, pushing operators toward a forced cloud upgrade — visible churn risk, and threads in the same forum name SiteLink itself as one of the alternatives operators are considering."
+          summary: "Older QuikStor Express installs are losing online payment/reservation capability, pushing operators toward a forced cloud upgrade - visible churn risk, and threads in the same forum name SiteLink itself as one of the alternatives operators are considering."
         },
         {
           added: "2026-09-18", date: "2026", type: "forum", flagged: false,
-          title: "\"Time to change software — looking for recommendations\" and related switching threads",
+          title: "\"Time to change software - looking for recommendations\" and related switching threads",
           url: "https://www.selfstoragetalk.com/forum/general-self-storage-forums/technology-software-and-security/224635-time-to-change-software-looking-for-recommendations-please",
           competitor: "multiple",
           summary: "Recurring forum pattern: operators naming SiteLink, Storage Commander, Self Storage Manager, and Syrasoft Storage Manager as candidates when leaving another platform."
@@ -212,40 +219,54 @@ const DATA = {
     {
       id: "edge",
       name: "Storable Edge",
-      desc: "Formerly storEDGE — small/mid-size operator management + marketing bundle.",
+      desc: "Formerly storEDGE - small/mid-size operator management + marketing bundle.",
       topics: ["AI virtual staffing / console tools", "all-in-one platform consolidation", "automation treated as baseline, not a differentiator", "website conversion tooling"],
       watchlist: [
-        {name:"6Storage", status:"tracked", note:"checked Sep 29, 2026 — continued PR cadence (partner-ecosystem growth Aug 4, expanded vision Sep 1); attending SSA Fall + FEDESSA conferences; nothing new beyond continued momentum"},
-        {name:"Storeganise", status:"tracked", note:"checked Sep 29, 2026 — launched an AI Connector (Mar 2026) linking live operator data to ChatGPT/Claude, billed as first such connector from a self-storage vendor; not flagged (feature add, not a platform relaunch)"},
-        {name:"StoreEase", status:"tracked", note:"AI staffing-tool entrant; checked Sep 29, 2026 — launched EaseOS (Mar 2026), an AI-native operating platform embedding AI across voice/web/operational workflows — its biggest platform move yet, flagged as a major relaunch; followed by an Aug 2026 partnership with Sierra for an omnichannel AI customer-service agent deployable under an operator's own brand (integration, not flagged separately)"},
-        {name:"Stora", status:"tracked", note:"checked Sep 28, 2026 — ranked #2 in SelectHub directory; integrated with CIA access control (already tracked); nothing new"},
-        {name:"Self Storage Manager", status:"tracked", note:"checked Sep 29, 2026 — Five Star Storage migrated a 45-property portfolio to SSM Cloud (Feb 2026, surfaced this run); also integrated Lumio AI voice/communication tools for rental calls and tenant support; both minor, not flagged"},
-        {name:"QuikStor", status:"tracked", note:"biggest platform release yet, unveiled SSA Fall 2026 (Sep 2026); also shipped a Lien Automation Module in Apr 2026, surfaced Sep 25, 2026; Sep 29, 2026 — integrated Veritec Solutions' revenue-management platform for market-based dynamic pricing, minor integration not flagged"},
-        {name:"Space Manager", status:"pending", note:"checked Sep 28, 2026 — cloud-based multi-site platform, 30+ years industry background; nothing new; checked Sep 30, 2026 — a Jun 2026 webinar teased \"Spaceman Cloud: Built for What's Next,\" signaling a next-gen cloud rebuild in progress; no confirmed launch or dedicated source URL yet, watching for follow-through"},
-        {name:"KINNOVIS", status:"tracked", note:"checked Sep 28, 2026 — UK/Europe-based AI platform (JaneAI chatbot), 4.93/5 rated, now serving Americas/Europe/Australasia/Pacific Asia; no new 2026 developments beyond ongoing geographic expansion; upgraded to tracked Sep 30, 2026 — acquired Xperitt, a Spanish access-control/software firm, on May 21, 2026, gaining a direct Iberian presence and adding access control to its portfolio for the first time; also formalized a partnership with Calcumate (unit-size calculator) as a standard feature in its Full Onboarding Plan — integration, not flagged separately"},
-        {name:"StoragePug", status:"pending", note:"added Sep 21, 2026 — web-conversion tool positioned against Edge's marketing bundle; checked again Sep 25, 2026, nothing new beyond routine review coverage; checked Sep 30, 2026 — published a 2026 Self Storage Trends Report (content marketing, not flagged)"}
+        {name:"6Storage", status:"tracked", note:"checked Sep 29, 2026 - continued PR cadence (partner-ecosystem growth Aug 4, expanded vision Sep 1); attending SSA Fall + FEDESSA conferences; nothing new beyond continued momentum; checked Oct 1, 2026 - no new developments beyond the same Sep 2026 messaging"},
+        {name:"Storeganise", status:"tracked", note:"checked Sep 29, 2026 - launched an AI Connector (Mar 2026) linking live operator data to ChatGPT/Claude, billed as first such connector from a self-storage vendor; not flagged (feature add, not a platform relaunch); checked Oct 1, 2026 - now serving 1,200+ facilities across 50 countries (growth milestone), plus an AI Booking Assistant and a unit-level bookings feature; feature adds/milestones, not flagged"},
+        {name:"StoreEase", status:"tracked", note:"AI staffing-tool entrant; checked Sep 29, 2026 - launched EaseOS (Mar 2026), an AI-native operating platform embedding AI across voice/web/operational workflows - its biggest platform move yet, flagged as a major relaunch; followed by an Aug 2026 partnership with Sierra for an omnichannel AI customer-service agent deployable under an operator's own brand (integration, not flagged separately)"},
+        {name:"Stora", status:"tracked", note:"checked Sep 28, 2026 - ranked #2 in SelectHub directory; integrated with CIA access control (already tracked); nothing new; checked Oct 1, 2026 - added a Calcumate (unit-size calculator) integration, minor feature add, not flagged"},
+        {name:"Self Storage Manager", status:"tracked", note:"checked Sep 29, 2026 - Five Star Storage migrated a 45-property portfolio to SSM Cloud (Feb 2026, surfaced this run); also integrated Lumio AI voice/communication tools for rental calls and tenant support; both minor, not flagged"},
+        {name:"QuikStor", status:"tracked", note:"biggest platform release yet, unveiled SSA Fall 2026 (Sep 2026); also shipped a Lien Automation Module in Apr 2026, surfaced Sep 25, 2026; Sep 29, 2026 - integrated Veritec Solutions' revenue-management platform for market-based dynamic pricing, minor integration not flagged"},
+        {name:"Space Manager", status:"pending", note:"checked Sep 28, 2026 - cloud-based multi-site platform, 30+ years industry background; nothing new; checked Sep 30, 2026 - a Jun 2026 webinar teased \"Spaceman Cloud: Built for What's Next,\" signaling a next-gen cloud rebuild in progress; no confirmed launch or dedicated source URL yet, watching for follow-through"},
+        {name:"KINNOVIS", status:"tracked", note:"checked Sep 28, 2026 - UK/Europe-based AI platform (JaneAI chatbot), 4.93/5 rated, now serving Americas/Europe/Australasia/Pacific Asia; no new 2026 developments beyond ongoing geographic expansion; upgraded to tracked Sep 30, 2026 - acquired Xperitt, a Spanish access-control/software firm, on May 21, 2026, gaining a direct Iberian presence and adding access control to its portfolio for the first time; also formalized a partnership with Calcumate (unit-size calculator) as a standard feature in its Full Onboarding Plan - integration, not flagged separately"},
+        {name:"StoragePug", status:"pending", note:"added Sep 21, 2026 - web-conversion tool positioned against Edge's marketing bundle; checked again Sep 25, 2026, nothing new beyond routine review coverage; checked Sep 30, 2026 - published a 2026 Self Storage Trends Report (content marketing, not flagged)"}
       ],
       items: [
+        {
+          added: "2026-10-01", date: "2026 (surfaced Oct 1, 2026)", type: "partnership", flagged: false,
+          title: "Storeganise reaches 1,200+ facilities in 50 countries; adds AI Booking Assistant",
+          url: "https://www.insideselfstorage.com/suppliers-products/storganise-software-platform-now-serving-self-storage-operators-in-50-countries",
+          competitor: "Storeganise",
+          summary: "Growth milestone (now 50 countries, 1,200+ facilities) plus a conversational AI Booking Assistant and a unit-level bookings feature. Continued incremental feature investment on top of the already-tracked AI Connector, not flagged on its own."
+        },
+        {
+          added: "2026-10-01", date: "2026 (surfaced Oct 1, 2026)", type: "partnership", flagged: false,
+          title: "Stora integrates with Calcumate's unit-size calculator",
+          url: "https://www.insideselfstorage.com/suppliers-products/self-storage-software-firm-stora-integrates-with-calcumate",
+          competitor: "Stora",
+          summary: "Minor integration adding a sizing-calculator tool to Stora's platform. Not flag-tier, consistent with Stora's steady pace of small feature additions."
+        },
         {
           added: "2026-09-30", date: "May 21, 2026 (surfaced Sep 30, 2026)", type: "acquisition", flagged: true,
           title: "Kinnovis acquires Xperitt, gaining a direct Iberian access-control foothold",
           url: "https://www.insideselfstorage.com/suppliers-products/austria-self-storage-software-provider-and-facility-operator-kinnovis-acquires-spanish-access-control-and-software-firm-xperitt",
           competitor: "KINNOVIS",
-          summary: "Austria-based Kinnovis acquired Xperitt, an Alicante, Spain-based provider of self-storage access-control hardware/software (Kleeiq) and facility-management software (Kypiq). The deal gives Kinnovis a direct presence in Spain and Portugal and adds access control to its portfolio for the first time; Xperitt's founder becomes managing director of the new Kinnovis Iberia unit. Kinnovis already operates in 19 European countries — a genuine acquisition, upgrading it from pending to tracked."
+          summary: "Austria-based Kinnovis acquired Xperitt, an Alicante, Spain-based provider of self-storage access-control hardware/software (Kleeiq) and facility-management software (Kypiq). The deal gives Kinnovis a direct presence in Spain and Portugal and adds access control to its portfolio for the first time; Xperitt's founder becomes managing director of the new Kinnovis Iberia unit. Kinnovis already operates in 19 European countries - a genuine acquisition, upgrading it from pending to tracked."
         },
         {
           added: "2026-09-30", date: "2026 (surfaced Sep 30, 2026)", type: "partnership", flagged: false,
           title: "Kinnovis and Calcumate formalize partnership agreement",
           url: "https://www.modernstoragemedia.com/news/kinnovis-and-calcumate-announce-partnership-agreement",
           competitor: "KINNOVIS",
-          summary: "After years of informal collaboration, Kinnovis made Calcumate's unit-size calculator a standard feature of its Full Onboarding Plan — the first EU-headquartered self-storage software company to do so. Minor integration, not flagged on its own, but continued product investment alongside the Xperitt acquisition above."
+          summary: "After years of informal collaboration, Kinnovis made Calcumate's unit-size calculator a standard feature of its Full Onboarding Plan - the first EU-headquartered self-storage software company to do so. Minor integration, not flagged on its own, but continued product investment alongside the Xperitt acquisition above."
         },
         {
           added: "2026-09-29", date: "Mar 2026 (surfaced Sep 29, 2026)", type: "product launch", flagged: true,
           title: "StoreEase launches EaseOS, an AI-native operating platform across voice, web, and operations",
           url: "https://www.modernstoragemedia.com/news/storeease-launches-easeos-to-improve-operations-customer-engagement",
           competitor: "StoreEase",
-          summary: "EaseOS embeds AI across voice, web, and day-to-day operational workflows for facilities that still lean on on-site staff — a bigger, more unified platform move than the Virtual Console Flex feature already tracked. Flagged as a major relaunch for this AI-staffing entrant."
+          summary: "EaseOS embeds AI across voice, web, and day-to-day operational workflows for facilities that still lean on on-site staff - a bigger, more unified platform move than the Virtual Console Flex feature already tracked. Flagged as a major relaunch for this AI-staffing entrant."
         },
         {
           added: "2026-09-29", date: "Aug 2026 (surfaced Sep 29, 2026)", type: "partnership", flagged: false,
@@ -259,21 +280,21 @@ const DATA = {
           title: "Storeganise launches an AI Connector linking operator data to ChatGPT and Claude",
           url: "https://www.insideselfstorage.com/suppliers-products/self-storage-software-provider-storeganise-launches-ai-connector-between-operator-data-and-tools-like-chatgpt-claude",
           competitor: "Storeganise",
-          summary: "Lets operators connect their Storeganise accounts to general-purpose AI tools and ask plain-English questions about occupancy, pricing, revenue, and site performance — billed as the first direct AI connector from a self-storage software vendor. Notable, but a single feature add rather than a platform relaunch, so not flagged."
+          summary: "Lets operators connect their Storeganise accounts to general-purpose AI tools and ask plain-English questions about occupancy, pricing, revenue, and site performance - billed as the first direct AI connector from a self-storage software vendor. Notable, but a single feature add rather than a platform relaunch, so not flagged."
         },
         {
           added: "2026-09-29", date: "2026 (surfaced Sep 29, 2026)", type: "partnership", flagged: false,
           title: "QuikStor integrates Veritec Solutions' revenue-management platform for dynamic pricing",
           url: "https://www.modernstoragemedia.com/news/quikstor-integrates-rm-technology-from-veritec-solutions",
           competitor: "QuikStor",
-          summary: "Adds market-based dynamic pricing to QuikStor — incremental to the SSA Fall 2026 platform release already tracked, not a standalone flag."
+          summary: "Adds market-based dynamic pricing to QuikStor - incremental to the SSA Fall 2026 platform release already tracked, not a standalone flag."
         },
         {
           added: "2026-09-29", date: "Feb 2026 (surfaced Sep 29, 2026)", type: "customer win / partnership", flagged: false,
           title: "Self Storage Manager migrates Five Star Storage's 45-property portfolio; adds Lumio AI communication tools",
           url: "https://www.prweb.com/releases/self-storage-manager-inc-announces-successful-migration-of-five-star-storages-45-property-portfolio-to-ssm-cloud-302694111.html",
           competitor: "Self Storage Manager",
-          summary: "SSM completed migrating a 45-property portfolio to its SSM Cloud platform and separately integrated Lumio's AI voice/communication tools for rental calls and tenant support. Two routine wins, not flag-tier on their own — same items also relevant to Storable Easy below."
+          summary: "SSM completed migrating a 45-property portfolio to its SSM Cloud platform and separately integrated Lumio's AI voice/communication tools for rental calls and tenant support. Two routine wins, not flag-tier on their own - same items also relevant to Storable Easy below."
         },
         {
           added: "2026-09-25", date: "Apr 2026 (surfaced Sep 25, 2026)", type: "product launch", flagged: false,
@@ -294,35 +315,35 @@ const DATA = {
           title: "QuikStor integrates with Storagely to auto-convert website traffic into rentals",
           url: "https://www.prweb.com/releases/quikstor-and-storagely-integrate-to-turn-website-traffic-into-rentals-automatically-302881721.html",
           competitor: "QuikStor",
-          summary: "Real-time inventory/pricing sync between QuikStor and Storagely-powered websites; first live integrations targeted for Q4 2026. Ecosystem-building move for a competitor tracked in both Edge and Easy segments — not itself a new product launch."
+          summary: "Real-time inventory/pricing sync between QuikStor and Storagely-powered websites; first live integrations targeted for Q4 2026. Ecosystem-building move for a competitor tracked in both Edge and Easy segments - not itself a new product launch."
         },
         {
           added: "2026-09-21", date: "Sep 1, 2026", type: "announcement", flagged: false,
           title: "6Storage expands vision for the future of self-storage operations",
           url: "https://www.6storage.com/6storage-expands-vision-for-the-future-of-self-storage-operations/",
           competitor: "6Storage",
-          summary: "Follow-up to March's all-in-one platform launch — broader operations roadmap, plus conference presence at both SSA Fall (Las Vegas) and FEDESSA (Germany, Sept 22–24). Continued momentum, not a new flag on its own."
+          summary: "Follow-up to March's all-in-one platform launch - broader operations roadmap, plus conference presence at both SSA Fall (Las Vegas) and FEDESSA (Germany, Sept 22-24). Continued momentum, not a new flag on its own."
         },
         {
           added: "2026-09-18", date: "Mar 2026", type: "product launch", flagged: true,
           title: "6Storage launches all-in-one growth platform, unifying AI sales engagement, SEO/website, and facility management",
           url: "https://www.prnewswire.com/news-releases/6storage-introduces-a-more-powerful-allinone-growth-platform-for-modern-selfstorage-operations-302703971.html",
           competitor: "6Storage",
-          summary: "Direct move into Storable Edge's bundled marketing + management positioning — this is the segment's biggest platform move this year."
+          summary: "Direct move into Storable Edge's bundled marketing + management positioning - this is the segment's biggest platform move this year."
         },
         {
           added: "2026-09-18", date: "Sep 2026", type: "product launch", flagged: true,
           title: "StoreEase launches AI Service Tool \"Virtual Console Flex\" for traditionally staffed facilities",
           url: "https://www.insideselfstorage.com/self-storage-security-technology/iss-news-desk-self-storage-vendors-introduce-a-slew-of-ai-products-to-support-facility-operations-in-2026",
           competitor: "StoreEase",
-          summary: "New entrant offering AI-staffed virtual console as an alternative to on-site staff — added to watchlist as tracked. (Related coverage elsewhere names this platform \"EaseOS,\" launched Mar 2026 and surfaced in full on Sep 29, 2026 — see above; bundles the same Web Assistant, Virtual Console, and Voice AI Agent pieces, treated as one story, not double-counted.)"
+          summary: "New entrant offering AI-staffed virtual console as an alternative to on-site staff - added to watchlist as tracked. (Related coverage elsewhere names this platform \"EaseOS,\" launched Mar 2026 and surfaced in full on Sep 29, 2026 - see above; bundles the same Web Assistant, Virtual Console, and Voice AI Agent pieces, treated as one story, not double-counted.)"
         },
         {
           added: "2026-09-18", date: "2026", type: "review signal", flagged: false,
           title: "6Storage building a refreshed admin portal template (expected mid-2026)",
           url: "https://www.g2.com/products/6storage/reviews",
           competitor: "6Storage",
-          summary: "G2 reviewer commentary pointing to an admin UI refresh in progress — worth checking again once shipped."
+          summary: "G2 reviewer commentary pointing to an admin UI refresh in progress - worth checking again once shipped."
         },
         {
           added: "2026-09-18", date: "2026", type: "review signal", flagged: false,
@@ -336,72 +357,79 @@ const DATA = {
     {
       id: "easy",
       name: "Storable Easy",
-      desc: "Formerly Easy Storage Solutions — single-facility / small operator software.",
+      desc: "Formerly Easy Storage Solutions - single-facility / small operator software.",
       topics: ["well-funded modern new entrant (Cubby)", "forced-migration churn risk", "no-cost / low-cost pricing pressure", "rental-site ecosystem integrations"],
       watchlist: [
-        {name:"Cubby", status:"tracked", note:"confirmed real competitor — not just a generic-word collision; Sep 25, 2026 — hired Andrew Capranos (ex-president, 10 Federal Storage) as President, Self-Storage; checked Sep 29, 2026 — nothing new beyond what's tracked"},
-        {name:"QuikStor", status:"tracked", note:"biggest platform release yet, unveiled SSA Fall 2026 (Sep 2026); also shipped a Lien Automation Module in Apr 2026, surfaced Sep 25, 2026; Sep 29, 2026 — integrated Veritec Solutions' revenue-management platform for dynamic pricing, minor integration not flagged"},
-        {name:"Self Storage Manager", status:"tracked", note:"checked Sep 29, 2026 — Five Star Storage migrated a 45-property portfolio to SSM Cloud (Feb 2026, surfaced this run); also integrated Lumio AI voice/communication tools for rental calls and tenant support; both minor, not flagged"},
-        {name:"Storman", status:"tracked", note:"checked Sep 25, 2026 — search surfaced an old (2014) Ezidebit acquisition, not new; checked again Sep 28, 2026 — OpenTech Alliance/INSOMNIAC CIA access-control integration (Aug 4, 2026, already tracked), no new developments"},
-        {name:"CCStorage", status:"tracked", note:"Sep 24, 2026 — integrated StorageDefender unit-level monitoring/tenant-subscription tech directly into its platform; checked again Sep 25, 2026, nothing new"},
-        {name:"WebSelfStorage", status:"tracked", note:"checked Sep 28, 2026 — #1 ranked in SelectHub directory; mixed reviews (bugs/support complaints cited); no new 2026 developments"},
-        {name:"Innago", status:"pending", note:"checked Sep 30, 2026 — mixed 2026 reviews (6–10/10, glitch complaints), still AAOA's exclusive suggested PM software, nothing major"},
-        {name:"DoorLoop", status:"pending", note:"checked Sep 30, 2026 — retained the #1 Capterra Property Management spot for a 2nd consecutive year, nothing new"},
-        {name:"Storagely", status:"tracked", note:"upgraded from pending Sep 29, 2026 — shipped Storagely 3.0.1 (Aug 2026), a full platform rebuild called the largest release in company history (modern architecture, faster load times, scales single-store to hundreds of locations) — flagged as a major relaunch; also won Reserve with Google approval (live Sep 14, 2026), letting operators publish live inventory/pricing to Google Search & Maps, a new CEO (Austin Simmons, Apr 2026), and integrations with Cubby (already tracked) and Monument; still primarily a rental-site/website layer rather than a full PMS, but the momentum and AI-native-platform integrations now warrant full tracking"},
-        {name:"OpenUnit", status:"pending", note:"added Sep 22, 2026 — YC-backed (W20), Toronto-based, free-with-payments pricing model aimed at small single-facility operators; checked again Sep 25, 2026, mixed reviews, nothing new; checked Sep 28, 2026, still nothing new"},
-        {name:"Selfstorage.team", status:"pending", note:"added Sep 22, 2026 — Germany-based cloud storage management software, surfaced via Capterra category listing; US relevance unconfirmed; checked Sep 30, 2026 — still no 2026-specific news, US relevance still unconfirmed"},
-        {name:"U-Haul Storage Software", status:"pending", note:"added Sep 28, 2026 (weekly new-competitor search) — free management software U-Haul offers its Storage Affiliate Network members; no-cost pricing pressure at the very low end; checked Sep 30, 2026 — confirmed it runs on the WebSelfStorage (eMove Inc.) platform, the same underlying product as the WebSelfStorage entry tracked below, no new development"},
-        {name:"Mini-Manager (Trackum)", status:"pending", note:"added Sep 28, 2026 (weekly new-competitor search) — legacy one-time-fee ($469) desktop tool for Mom & Pop single-facility owners, around since 2000; not new to the market, just newly tracked here; checked Sep 30, 2026 — nothing new, 4.7/19 reviews"}
+        {name:"Cubby", status:"tracked", note:"confirmed real competitor - not just a generic-word collision; Sep 25, 2026 - hired Andrew Capranos (ex-president, 10 Federal Storage) as President, Self-Storage; checked Oct 1, 2026 - shipped a Sep 2026 \"Fall Release\" (continued product iteration); no new funding/M&A beyond the already-tracked $63M Series A (Goldman Sachs Alternatives-led), not flagged"},
+        {name:"QuikStor", status:"tracked", note:"biggest platform release yet, unveiled SSA Fall 2026 (Sep 2026); also shipped a Lien Automation Module in Apr 2026, surfaced Sep 25, 2026; Sep 29, 2026 - integrated Veritec Solutions' revenue-management platform for dynamic pricing, minor integration not flagged"},
+        {name:"Self Storage Manager", status:"tracked", note:"checked Sep 29, 2026 - Five Star Storage migrated a 45-property portfolio to SSM Cloud (Feb 2026, surfaced this run); also integrated Lumio AI voice/communication tools for rental calls and tenant support; both minor, not flagged"},
+        {name:"Storman", status:"tracked", note:"checked Sep 25, 2026 - search surfaced an old (2014) Ezidebit acquisition, not new; checked again Sep 28, 2026 - OpenTech Alliance/INSOMNIAC CIA access-control integration (Aug 4, 2026, already tracked), no new developments"},
+        {name:"CCStorage", status:"tracked", note:"Sep 24, 2026 - integrated StorageDefender unit-level monitoring/tenant-subscription tech directly into its platform; checked again Sep 25, 2026, nothing new; checked Oct 1, 2026 - added detail on the same integration: first live operator is Family Heirloom Storage (8-in-10 tenants enrolled, +$144/unit/year), showcased at SSA Fall 2026; supporting detail on an already-tracked integration, not a new flag"},
+        {name:"WebSelfStorage", status:"tracked", note:"checked Sep 28, 2026 - #1 ranked in SelectHub directory; mixed reviews (bugs/support complaints cited); no new 2026 developments"},
+        {name:"Innago", status:"pending", note:"checked Sep 30, 2026 - mixed 2026 reviews (6-10/10, glitch complaints), still AAOA's exclusive suggested PM software, nothing major"},
+        {name:"DoorLoop", status:"pending", note:"checked Sep 30, 2026 - retained the #1 Capterra Property Management spot for a 2nd consecutive year, nothing new"},
+        {name:"Storagely", status:"tracked", note:"upgraded from pending Sep 29, 2026 - shipped Storagely 3.0.1 (Aug 2026), a full platform rebuild called the largest release in company history (modern architecture, faster load times, scales single-store to hundreds of locations) - flagged as a major relaunch; also won Reserve with Google approval (live Sep 14, 2026), letting operators publish live inventory/pricing to Google Search & Maps, a new CEO (Austin Simmons, Apr 2026), and integrations with Cubby (already tracked) and Monument; still primarily a rental-site/website layer rather than a full PMS, but the momentum and AI-native-platform integrations now warrant full tracking"},
+        {name:"OpenUnit", status:"pending", note:"added Sep 22, 2026 - YC-backed (W20), Toronto-based, free-with-payments pricing model aimed at small single-facility operators; checked again Sep 25, 2026, mixed reviews, nothing new; checked Sep 28, 2026, still nothing new"},
+        {name:"Selfstorage.team", status:"pending", note:"added Sep 22, 2026 - Germany-based cloud storage management software, surfaced via Capterra category listing; US relevance unconfirmed; checked Sep 30, 2026 - still no 2026-specific news, US relevance still unconfirmed"},
+        {name:"U-Haul Storage Software", status:"pending", note:"added Sep 28, 2026 (weekly new-competitor search) - free management software U-Haul offers its Storage Affiliate Network members; no-cost pricing pressure at the very low end; checked Sep 30, 2026 - confirmed it runs on the WebSelfStorage (eMove Inc.) platform, the same underlying product as the WebSelfStorage entry tracked below, no new development"},
+        {name:"Mini-Manager (Trackum)", status:"pending", note:"added Sep 28, 2026 (weekly new-competitor search) - legacy one-time-fee ($469) desktop tool for Mom & Pop single-facility owners, around since 2000; not new to the market, just newly tracked here; checked Sep 30, 2026 - nothing new, 4.7/19 reviews"}
       ],
       items: [
+        {
+          added: "2026-10-01", date: "Sep 2, 2026 (surfaced Oct 1, 2026)", type: "partnership", flagged: false,
+          title: "CCStorage/StorageDefender integration goes live with first operator, Family Heirloom Storage",
+          url: "https://www.modernstoragemedia.com/news/storagedefender-ccstorage-integrate-smart-unit-technology",
+          competitor: "CCStorage",
+          summary: "Supporting detail on the already-tracked StorageDefender integration: first live operator is Family Heirloom Storage, where more than 8 in 10 tenants enrolled in Smart Unit service, generating roughly $144 in additional annual revenue per enrolled unit. Showcased at SSA Fall 2026. Confirms real adoption of an already-flagged integration, not a new standalone flag."
+        },
         {
           added: "2026-09-29", date: "Aug 2026 (surfaced Sep 29, 2026)", type: "product launch", flagged: true,
           title: "Storagely ships 3.0.1, the \"largest release in company history\"",
           url: "https://smb.coastmountainnews.com/article/A-New-Era-for-Self-Storage-A-New-Era-for-Storagely/6a96e5d4ab428d0002ff9551",
           competitor: "Storagely",
-          summary: "Full platform rebuild — modern architecture, faster load times, and scaling from single-store to hundreds of locations — under new CEO Austin Simmons (installed Apr 2026). Combined with the Reserve with Google integration and its existing Cubby and QuikStor integrations, this is enough momentum to upgrade Storagely from pending to tracked, and to flag this release as a major relaunch for a rental-site layer that increasingly touches Storable Easy's segment."
+          summary: "Full platform rebuild - modern architecture, faster load times, and scaling from single-store to hundreds of locations - under new CEO Austin Simmons (installed Apr 2026). Combined with the Reserve with Google integration and its existing Cubby and QuikStor integrations, this is enough momentum to upgrade Storagely from pending to tracked, and to flag this release as a major relaunch for a rental-site layer that increasingly touches Storable Easy's segment."
         },
         {
           added: "2026-09-29", date: "Sep 14, 2026 (surfaced Sep 29, 2026)", type: "partnership", flagged: false,
           title: "Storagely wins Reserve with Google approval",
           url: "https://www.modernstoragemedia.com/news/storagely-brings-reserve-with-google-integration-to-storage-operators",
           competitor: "Storagely",
-          summary: "Lets Storagely-powered operators publish live inventory and pricing directly into Google Search and Maps results — a new demand channel, bundled with the 3.0.1 relaunch above."
+          summary: "Lets Storagely-powered operators publish live inventory and pricing directly into Google Search and Maps results - a new demand channel, bundled with the 3.0.1 relaunch above."
         },
         {
           added: "2026-09-29", date: "Feb 2026 (surfaced Sep 29, 2026)", type: "customer win / partnership", flagged: false,
           title: "Self Storage Manager migrates Five Star Storage's 45-property portfolio; adds Lumio AI communication tools",
           url: "https://www.prweb.com/releases/self-storage-manager-inc-announces-successful-migration-of-five-star-storages-45-property-portfolio-to-ssm-cloud-302694111.html",
           competitor: "Self Storage Manager",
-          summary: "SSM completed migrating a 45-property portfolio to its SSM Cloud platform and separately integrated Lumio's AI voice/communication tools for rental calls and tenant support. Two routine wins, not flag-tier on their own — same items also relevant to Storable Edge above."
+          summary: "SSM completed migrating a 45-property portfolio to its SSM Cloud platform and separately integrated Lumio's AI voice/communication tools for rental calls and tenant support. Two routine wins, not flag-tier on their own - same items also relevant to Storable Edge above."
         },
         {
           added: "2026-09-29", date: "2026 (surfaced Sep 29, 2026)", type: "partnership", flagged: false,
           title: "QuikStor integrates Veritec Solutions' revenue-management platform for dynamic pricing",
           url: "https://www.modernstoragemedia.com/news/quikstor-integrates-rm-technology-from-veritec-solutions",
           competitor: "QuikStor",
-          summary: "Adds market-based dynamic pricing to QuikStor's single-facility installs, core to the Easy segment — incremental to the SSA Fall 2026 platform release already tracked, not a standalone flag."
+          summary: "Adds market-based dynamic pricing to QuikStor's single-facility installs, core to the Easy segment - incremental to the SSA Fall 2026 platform release already tracked, not a standalone flag."
         },
         {
           added: "2026-09-28", date: "Sep 28, 2026", type: "new competitor", flagged: false,
           title: "New names on the radar: U-Haul's free storage software, and legacy player Mini-Manager",
           url: "https://www.openunit.com/",
           competitor: "U-Haul / Mini-Manager",
-          summary: "Weekly new-competitor sweep for the low-cost end of the Easy segment surfaced two names not previously tracked: U-Haul offers free management software to its Storage Affiliate Network members (no monthly fee, aimed at very small operators), and Mini-Manager (by Trackum) is a 25+ year old one-time-fee ($469) desktop tool for Mom & Pop single-facility owners. Neither is a new entrant — both reinforce the existing no-cost/low-cost pricing-pressure topic on this line rather than adding a new threat vector."
+          summary: "Weekly new-competitor sweep for the low-cost end of the Easy segment surfaced two names not previously tracked: U-Haul offers free management software to its Storage Affiliate Network members (no monthly fee, aimed at very small operators), and Mini-Manager (by Trackum) is a 25+ year old one-time-fee ($469) desktop tool for Mom & Pop single-facility owners. Neither is a new entrant - both reinforce the existing no-cost/low-cost pricing-pressure topic on this line rather than adding a new threat vector."
         },
         {
           added: "2026-09-25", date: "Sep 22, 2026", type: "leadership hire", flagged: false,
           title: "Cubby names Andrew Capranos as President, Self-Storage",
           url: "https://www.insideselfstorage.com/suppliers-products/self-storage-software-firm-cubby-hires-andrew-capranos-as-president",
           competitor: "Cubby",
-          summary: "Capranos brings 12 years of self-storage operating experience — most recently president of 10 Federal Storage (130+ properties across 16 states), before that seven years at Public Storage — to lead how Cubby works with operators from evaluation through implementation. Not a flag-tier event on its own, but signals Cubby, already the segment's best-funded new entrant off its $63M Series A, is staffing up with enterprise-grade operator leadership as it scales."
+          summary: "Capranos brings 12 years of self-storage operating experience - most recently president of 10 Federal Storage (130+ properties across 16 states), before that seven years at Public Storage - to lead how Cubby works with operators from evaluation through implementation. Not a flag-tier event on its own, but signals Cubby, already the segment's best-funded new entrant off its $63M Series A, is staffing up with enterprise-grade operator leadership as it scales."
         },
         {
           added: "2026-09-25", date: "Apr 2026 (surfaced Sep 25, 2026)", type: "product launch", flagged: false,
           title: "QuikStor launches Lien Automation Module",
           url: "https://www.prweb.com/releases/quikstor-launches-lien-automation-module-taking-the-industrys-most-operationally-risky-process-off-operators-plates-302760899.html",
           competitor: "QuikStor",
-          summary: "Same Lien Automation Module noted under Edge — relevant here too since QuikStor's single-facility installs are core to the Easy segment."
+          summary: "Same Lien Automation Module noted under Edge - relevant here too since QuikStor's single-facility installs are core to the Easy segment."
         },
         {
           added: "2026-09-24", date: "Sep 2026", type: "partnership", flagged: false,
@@ -415,7 +443,7 @@ const DATA = {
           title: "QuikStor arrives at SSA Fall 2026 with its most powerful platform yet",
           url: "https://www.prweb.com/releases/quikstor-arrives-at-ssa-with-its-most-powerful-platform-yet-built-by-operators-for-operators-302871007.html",
           competitor: "QuikStor",
-          summary: "Same SSA Fall 2026 release noted under Edge — relevant here too since QuikStor's single-facility installs are core to the Easy segment. AI revenue management, AI voice automation, and conversational reporting raise the bar on what small operators will expect from Storable Easy."
+          summary: "Same SSA Fall 2026 release noted under Edge - relevant here too since QuikStor's single-facility installs are core to the Easy segment. AI revenue management, AI voice automation, and conversational reporting raise the bar on what small operators will expect from Storable Easy."
         },
         {
           added: "2026-09-22", date: "Sep 2026", type: "partnership", flagged: false,
@@ -436,7 +464,7 @@ const DATA = {
           title: "QuikStor integrates with Storagely to auto-convert website traffic into rentals",
           url: "https://www.prweb.com/releases/quikstor-and-storagely-integrate-to-turn-website-traffic-into-rentals-automatically-302881721.html",
           competitor: "QuikStor",
-          summary: "Same Storagely integration noted under Edge — relevant here too since QuikStor's single-facility installs are core to the Easy segment."
+          summary: "Same Storagely integration noted under Edge - relevant here too since QuikStor's single-facility installs are core to the Easy segment."
         },
         {
           added: "2026-09-18", date: "Jan 2026", type: "funding", flagged: true,
@@ -457,7 +485,7 @@ const DATA = {
           title: "QuikStor Express users forced to migrate to QMS cloud platform",
           url: "https://www.selfstoragetalk.com/forum/general-self-storage-forums/technology-software-and-security/226030-quikstor-forced-migration-im-seeking-next-steps-feedback",
           competitor: "QuikStor",
-          summary: "Same forced-migration thread as under SiteLink — relevant here too since many affected operators are single-facility QuikStor Express users, Storable Easy's core segment."
+          summary: "Same forced-migration thread as under SiteLink - relevant here too since many affected operators are single-facility QuikStor Express users, Storable Easy's core segment."
         },
         {
           added: "2026-09-18", date: "2026", type: "review signal", flagged: false,
@@ -481,7 +509,7 @@ const DATA = {
 document.getElementById("lastChecked").textContent = DATA.lastCheckedLabel;
 
 const banner = document.getElementById("statusBanner");
-banner.innerHTML = "<b>One new flag today (Sep 30) — on Storable Edge:</b> Kinnovis (a KINNOVIS AI-platform competitor) acquired Xperitt, a Spanish access-control/software firm, giving it a direct Iberian foothold and access control for the first time; KINNOVIS is upgraded from pending to tracked. Also on Edge, Kinnovis formalized a Calcumate partnership (minor, not flagged). On SiteLink, a new name surfaced via forum chatter — Storlogix Cloud — added to the watchlist as pending. Rotated through SC Navigator/Storage Commander, DoorLoop, and Innago (SiteLink); Space Manager, KINNOVIS, and StoragePug (Edge); Selfstorage.team, U-Haul Storage Software, Mini-Manager, Innago, and DoorLoop (Easy) — all quiet beyond routine listings and reviews. No funding rounds or churn-risk patterns beyond what's already tracked.";
+banner.innerHTML = "<b>No new flags today (Oct 1).</b> Clarified that Storlogix Cloud (SiteLink watchlist) is PTI Security's access-control cloud software, not a standalone PMS, so it stays pending rather than being treated as a direct SiteLink replacement. Minor feature/integration adds surfaced for Stora and Storeganise (Edge), and supporting detail on the already-tracked CCStorage/StorageDefender integration (Easy). Rotated through Storage Commander/Syrasoft/Storesync (SiteLink); Stora/6Storage/Storeganise (Edge); and Cubby/CCStorage (Easy) - all quiet beyond routine listings, reviews, and incremental feature news. No funding rounds, acquisitions, or churn-risk patterns beyond what's already tracked.";
 
 // ---- helpers ----
 function sourceNameFromUrl(url) {
@@ -509,7 +537,8 @@ function sourceNameFromUrl(url) {
       "storman.com": "Storman (company site)",
       "opentechalliance.com": "OpenTech Alliance",
       "storagecommander.com": "Storage Commander (company site)",
-      "smb.coastmountainnews.com": "Coast Mountain News"
+      "smb.coastmountainnews.com": "Coast Mountain News",
+      "ptistoragesecurity.com.au": "PTI Storage Security (company site)"
     };
     return map[host] || host;
   } catch (e) {
@@ -584,7 +613,7 @@ DATA.lines.forEach((line, idx) => {
 
     <div class="section-block today">
       <h3>🔥 New today</h3>
-      ${todayItems.length ? todayItems.map(renderItem).join("") : `<div class="empty-note">Quiet day — nothing new surfaced for ${line.name} today.</div>`}
+      ${todayItems.length ? todayItems.map(renderItem).join("") : `<div class="empty-note">Quiet day - nothing new surfaced for ${line.name} today.</div>`}
     </div>
 
     <div class="section-block">
@@ -594,8 +623,8 @@ DATA.lines.forEach((line, idx) => {
 
     <div class="section-block">
       <details class="archive-details">
-        <summary>Archive (older than 30 days) — ${archiveItems.length} item${archiveItems.length === 1 ? "" : "s"}</summary>
-        ${archiveItems.length ? archiveItems.map(renderItem).join("") : `<div class="empty-note">Nothing has aged past 30 days yet — this section fills in over time.</div>`}
+        <summary>Archive (older than 30 days) - ${archiveItems.length} item${archiveItems.length === 1 ? "" : "s"}</summary>
+        ${archiveItems.length ? archiveItems.map(renderItem).join("") : `<div class="empty-note">Nothing has aged past 30 days yet - this section fills in over time.</div>`}
       </details>
     </div>
   `;
