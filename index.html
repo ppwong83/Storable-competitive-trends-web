@@ -101,8 +101,8 @@
 
 <script>
 const DATA = {
-  lastChecked: "2026-10-28",
-  lastCheckedLabel: "Oct 28, 2026",
+  lastChecked: "2026-10-29",
+  lastCheckedLabel: "Oct 29, 2026",
   lines: [
     {
       id: "sitelink",
@@ -422,9 +422,17 @@ const DATA = {
         {name:"Selfstorage.team", status:"pending", note:"added Sep 22, 2026 - Germany-based cloud storage management software, surfaced via Capterra category listing; US relevance unconfirmed; checked Sep 30, 2026 - no 2026-specific news found, US relevance still unconfirmed"},
         {name:"U-Haul Storage Software", status:"pending", note:"added Sep 28, 2026 (weekly new-competitor search) - free management software U-Haul offers to its Storage Affiliate Network members; no-cost pricing pressure at the very low end; checked Sep 30, 2026 - confirmed it runs on the WebSelfStorage (eMove Inc.) platform, same underlying product as the WebSelfStorage entry tracked below; no new development"},
         {name:"Mini-Manager (Trackum)", status:"pending", note:"added Sep 28, 2026 (weekly new-competitor search) - legacy one-time-fee ($469) desktop software targeting Mom & Pop single-facility operators; been around since 2000, not a new entrant but not previously tracked; checked Sep 30, 2026 - no new developments, 4.7/19 reviews"},
-        {name:"SavvyLockers", status:"pending", note:"added Oct 5, 2026 (weekly new-competitor search) - small cloud/mobile self-storage management platform (admin + customer panels, access-control automation, Azure-hosted); only 3 Capterra reviews (5.0/5) so far, low footprint - watching for growth signal"}
+        {name:"SavvyLockers", status:"pending", note:"added Oct 5, 2026 (weekly new-competitor search) - small cloud/mobile self-storage management platform (admin + customer panels, access-control automation, Azure-hosted); only 3 Capterra reviews (5.0/5) so far, low footprint - watching for growth signal"},
+        {name:"Storage Facility Creator", status:"pending", note:"added Oct 29, 2026 - low-cost management software for independent/single-facility operators, $75/property/mo, no contract or onboarding fee, unlimited users, 30-day trial plus free first month (Inside Self Storage, Oct 21, 2026); direct low-cost pricing pressure on Storable Easy; not flagged, watching"}
       ],
       items: [
+        {
+          added: "2026-10-29", date: "Oct 21, 2026", type: "new competitor", flagged: false,
+          title: "New name on the radar: Storage Facility Creator offers $75/mo software for independent operators",
+          url: "https://www.insideselfstorage.com/suppliers-products/storage-facility-creator-offers-low-cost-management-software-for-independent-self-storage-operators",
+          competitor: "Storage Facility Creator",
+          summary: "Targets owners of one facility or a small portfolio at $75 per property per month with no contract, no onboarding fee, unlimited users, a 30-day trial and a free first month. Low-cost pricing pressure in Storable Easy's core segment; added as pending, not flagged."
+        },
         {
           added: "2026-10-06", date: "May 2026 (surfaced Oct 6, 2026)", type: "partnership", flagged: false,
           title: "StorSuite's StorPass mobile-wallet tech integrates with Cubby",
@@ -594,7 +602,7 @@ const DATA = {
 document.getElementById("lastChecked").textContent = DATA.lastCheckedLabel;
 
 const banner = document.getElementById("statusBanner");
-banner.innerHTML = "<b>Quiet day (Oct 28): no confirmed funding rounds, acquisitions, major launches, or churn-risk patterns beyond what is already tracked.</b> Re-checked Yardi Storage Manager, Tenant Inc, Cubby, Storagely, QuikStor, 6Storage, Storeganise, Stora and Capterra/G2 reviews. Nothing new surfaced; results were previously tracked items. No new competitor names today.";
+banner.innerHTML = "<b>Quiet day (Oct 29): no confirmed funding rounds, acquisitions, major launches, or churn-risk patterns beyond what is already tracked.</b> Re-checked Yardi Storage Manager, Tenant Inc, SC Navigator, Cubby, Storagely, QuikStor, 6Storage and StoreEase. One new pending name on the Storable Easy watchlist: Storage Facility Creator ($75/property/mo low-cost software for independents), not flagged.";
 
 // ---- helpers ----
 function sourceNameFromUrl(url) {
